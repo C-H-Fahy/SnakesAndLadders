@@ -22,8 +22,8 @@ def horiline(y):
 
 def drawgrid(startpoint):
     for i in range(0, constants.GRID+1):
-        vertline(i*(500//constants.GRID), startpoint)
-        horiline(i*(500//constants.GRID), startpoint)
+        vertline(i*(500//constants.GRID))
+        horiline(i*(500//constants.GRID))
       
 turtle.screensize(1000, 1000)  
         
