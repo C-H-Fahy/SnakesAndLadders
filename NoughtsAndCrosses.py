@@ -1,3 +1,5 @@
+#AUTHOR: CHFahy
+
 #External
 import turtle
 import time
@@ -19,34 +21,35 @@ def horiline(y):
     turtle.setheading(0)
     turtle.pendown()
     turtle.forward(500)
-
-def drawmap():
-    """Draws Out All The Fixed Stuff, Outputs list with the centres of Squares"""
+    
+def findpos(n):
     gap = 500//constants.GRID
-    #Finds positions of all squares 
-    positions = []
+    a = 0
     for i in range(0, constants.GRID):
         y = gap * i + gap/2
         for i in range(0, constants.GRID):
             x = gap * i + gap/2
-            positions.append((x, y))
+            if a == n:
+                return (x, y)
+                print(x, y)
+            a = a + 1
 
+def drawmap():
+    """Draws Out All The Fixed Stuff"""
+    gap = 500//constants.GRID
     #Drawing        
     for i in range(0, constants.GRID+1):
         vertline(i*gap)
         horiline(i*gap)
         
-    for i in range(0, len(positions)):
+    for i in range(0, constants.GRID*constants.GRID):
         turtle.penup()
-        turtle.setpos(positions[i])
+        turtle.setpos(findpos(i))
         turtle.pendown()
         turtle.write(i)
- 
-    return(positions)
 
 def main():
-    positions = drawmap()
-    print(positions)
+    drawmap()
 
 turtle.screensize(1000, 1000)
 main()
