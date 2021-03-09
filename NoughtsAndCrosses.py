@@ -4,7 +4,7 @@ import time
 #Internal
 import constants
 
-def vertline(x, startpoint):
+def vertline(x):
     """draws a verticle line of  500"""
     turtle.penup()
     turtle.setpos(x, 0)
@@ -12,7 +12,7 @@ def vertline(x, startpoint):
     turtle.pendown()
     turtle.forward(500)
     
-def horiline(y, startpoint):
+def horiline(y):
     """draws a horizontal line of  500"""
     turtle.penup()
     turtle.setpos(0, y)
