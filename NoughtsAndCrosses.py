@@ -31,7 +31,6 @@ def findpos(n):
             x = gap * i + gap/2
             if a == n:
                 return (x, y)
-                print(x, y)
             a = a + 1
 
 def drawmap():
