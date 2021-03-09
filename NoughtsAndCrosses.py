@@ -3,6 +3,7 @@
 #External
 import turtle
 import time
+import random
 #Internal
 import constants
 
@@ -23,6 +24,7 @@ def horiline(y):
     turtle.forward(500)
     
 def findpos(n):
+    """Finds centre of square, returns None if square does not exist"""
     gap = 500//constants.GRID
     a = 0
     for i in range(0, constants.GRID):
@@ -33,22 +35,62 @@ def findpos(n):
                 return (x, y)
             a = a + 1
 
-def drawmap():
+def DrawMap():
     """Draws Out All The Fixed Stuff"""
+    turtle.speed(constants.DRAW_SPEED)
     gap = 500//constants.GRID
-    #Drawing        
+    #Draw Grid        
     for i in range(0, constants.GRID+1):
         vertline(i*gap)
         horiline(i*gap)
-        
+    #Draw Numbers
     for i in range(0, constants.GRID*constants.GRID):
         turtle.penup()
         turtle.setpos(findpos(i))
         turtle.pendown()
         turtle.write(i)
 
+def turn(player, title, pos, offset):
+    esc = input("Player "+ title + " turn")
+    move = random.randint(1, 6)
+    print(move)
+    try: 
+        pos = move + pos
+        player.setpos(findpos(pos))
+    except TypeError:
+        #When findpos returns None
+        pos = constants.GRID * constants.GRID - 1
+        player.setpos(findpos(pos))
+    return(pos)
+    
+
+def GameStart():
+    aPlayer = turtle.Turtle()
+    bPlayer = turtle.Turtle()
+    aPlayer.penup()
+    bPlayer.penup()
+    
+    aPlayerpos = constants.STARTPOS
+    bPlayerpos = constants.STARTPOS
+    aPlayer.speed(constants.DRAW_SPEED)
+    bPlayer.speed(constants.DRAW_SPEED)
+    aPlayer.setpos(findpos(aPlayerpos))
+    bPlayer.setpos(findpos(bPlayerpos))
+    limit = constants.GRID * constants.GRID - 1
+
+    while True:
+        aPlayerpos = turn(aPlayer, "A", aPlayerpos, +10)
+        #bPlayerpos = turn(bPlayer, "A", bPlayerpos, +10)
+        if aPlayerpos >= limit:
+            print("Player A wins")
+            break
+        if bPlayerpos >= limit:
+            print("Player B wins")
+            break
+
 def main():
-    drawmap()
+    DrawMap()
+    GameStart()
 
 turtle.screensize(1000, 1000)
 main()
