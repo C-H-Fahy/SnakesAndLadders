@@ -8,22 +8,7 @@ import random
 
 #Internal modules
 import config
-
-def VertLine(x):
-    """Draws a verticle line of  500"""
-    turtle.penup()
-    turtle.setpos(x, 0)
-    turtle.setheading(90)
-    turtle.pendown()
-    turtle.forward(500)
-
-def HoriLine(y):
-    """Draws a horizontal line of  500"""
-    turtle.penup()
-    turtle.setpos(0, y)
-    turtle.setheading(0)
-    turtle.pendown()
-    turtle.forward(500)
+import shapes
 
 def FindPos(n):
     """Finds centre of square, returns None if square does not exist"""
@@ -44,14 +29,20 @@ def DrawMap():
     gap = 500//config.GRID
     #Draw Grid        
     for i in range(0, config.GRID+1):
-        VertLine(i*gap)
-        HoriLine(i*gap)
+        shapes.VertLine(i*gap)
+        shapes.HoriLine(i*gap)
     #Draw Numbers
     for i in range(0, config.GRID*config.GRID):
         turtle.penup()
         turtle.setpos(FindPos(i))
         turtle.pendown()
         turtle.write(i)
+    #Draws Snakes
+    for i in range(0, len(config.SNAKES)):
+        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]))
+    #Draws Ladders
+    for i in range(0, len(config.LADDERS)):
+        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]))
 
 def PlayerSetup(player, offset):
     """Sets up player, returns players position"""
@@ -69,6 +60,7 @@ def turn(player, title, pos, offset):
     move = random.randint(1, 6)
     print(move)
     try: 
+        #Move Player
         pos = move + pos
         (x, y) = FindPos(pos)
         x = x + offset
@@ -94,7 +86,7 @@ def turn(player, title, pos, offset):
     #Check to see if player is on Snake and move them if they are
     for i in range (0,len(config.SNAKES)):
         if pos == config.SNAKES[i][0]:
-            print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to"  + 
+            print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
             str(config.SNAKES[i][1]))
             time.sleep(0.5)
             pos = config.SNAKES[i][1]
