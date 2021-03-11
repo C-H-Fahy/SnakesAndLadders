@@ -103,7 +103,7 @@ def turn(player, title, pos, offset, diceTurtle):
     dice(move, diceTurtle)
     
     #Move Player
-    pos = move + pos
+    pos = move + pos + 1
     (x, y) = FindPos(pos)
     x = x + offset
     player.setpos(x, y)
