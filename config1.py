@@ -24,7 +24,7 @@ GRIDPOS = (-330, -330)
 DICEPOS = (-340, -340)
 
 #Drawing/Move speed of all turtles
-DRAW_SPEED = 0
+DRAW_SPEED = 1
 
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
@@ -35,4 +35,4 @@ ROLL = 6
 #Shape Filenames
 A_PLAYER_SHAPE = "bull.gif"
 B_PLAYER_SHAPE = "cow.gif"
-DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif"]
+DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif", "dice6.gif"]

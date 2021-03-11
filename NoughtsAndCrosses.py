@@ -93,7 +93,7 @@ def dice(move, diceTurtle):
         #If Turtle can't set the players shape
         print("WARNING: " + config.DICE[move] + " is probably missing or invalid")
         diceTurtle.hideturtle()
-    except IndexError:
+    except IndexError or NameError:
         print("WARNING: Not enough dice in config.DICE")
         diceTurtle.hideturtle()
     finally:
