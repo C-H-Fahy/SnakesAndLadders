@@ -35,4 +35,4 @@ ROLL = 6
 #Shape Filenames
 A_PLAYER_SHAPE = "bull.gif"
 B_PLAYER_SHAPE = "cow.gif"
-DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif", "dice6.gif"]
+DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif"]

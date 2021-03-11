@@ -88,11 +88,14 @@ def dice(move, diceTurtle):
         #Sets players shape
         turtle.register_shape(config.DICE[move])
         diceTurtle.shape(config.DICE[move]) 
+        diceTurtle.showturtle()
     except turtle.TurtleGraphicsError:
         #If Turtle can't set the players shape
         print("WARNING: " + config.DICE[move] + " is probably missing or invalid")
+        diceTurtle.hideturtle()
     except IndexError:
         print("WARNING: Not enough dice in config.DICE")
+        diceTurtle.hideturtle()
     finally:
         print("Roll is: " + str(move + 1))
     
