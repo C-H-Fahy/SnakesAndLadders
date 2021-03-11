@@ -24,7 +24,7 @@ if mode == "2":
 
 def FindPos(n):
     """Finds centre of square"""
-    #This should be more efficent than a for loop(at the cost of some readability)
+    #This should be more efficent than for loop(at the cost of some readability)
     gap = config.SIZE//config.GRID
 
     row = n // config.GRID
@@ -65,14 +65,16 @@ def DrawMap():
         (config.SIZE/5)//config.GRID)
         
 
-def PlayerSetup(player, offset, shape):
+def PlayerSetup(player, offset, shape, title):
     """Sets up player, returns players position"""
     try:
         #Sets players shape
+        turtle.register_shape(shape)
         turtle.shape(shape)
+        print("Player " + title + " is " + shape) 
     except turtle.TurtleGraphicsError:
         #If Turtle can't set the players shape
-        print("WARNING: " + shape + " is probably missing") 
+        print("WARNING: " + shape + " is probably missing or invalid")
     player.penup()
     player.speed(config.DRAW_SPEED)
     playerpos = config.STARTPOS
@@ -80,13 +82,25 @@ def PlayerSetup(player, offset, shape):
     x = x + offset
     player.setpos(x, y)
     return playerpos
-    
 
-def turn(player, title, pos, offset):
+def dice(move, diceTurtle):
+    try:
+        #Sets players shape
+        turtle.register_shape(config.DICE[move])
+        diceTurtle.shape(config.DICE[move]) 
+    except turtle.TurtleGraphicsError:
+        #If Turtle can't set the players shape
+        print("WARNING: " + config.DICE[move] + " is probably missing or invalid")
+    except IndexError:
+        print("WARNING: Not enough dice in config.DICE")
+    finally:
+        print("Roll is: " + str(move + 1))
+    
+def turn(player, title, pos, offset, diceTurtle):
     """Runs players turn, returns players new position"""
     esc = input("Player "+ title + " turn:\n")
-    move = random.randint(1, 6)
-    print(move)
+    move = random.randint(0, config.ROLL - 1)
+    dice(move, diceTurtle)
     
     #Move Player
     pos = move + pos
@@ -129,33 +143,37 @@ def turn(player, title, pos, offset):
     return(pos)
     
 
-def GameStart():
+def GameStart(aPlayerTitle, bPlayerTitle):
     offset = (config.SIZE/5)//config.GRID
     limit = config.GRID * config.GRID - 1
 
     #aPlayer setup
     aPlayer = turtle.Turtle()
-    aPlayerpos = PlayerSetup(aPlayer, offset, config.A_PLAYER_SHAPE)
+    aPlayerpos = PlayerSetup(aPlayer, offset, config.A_PLAYER_SHAPE, aPlayerTitle)
 
     #bPlayer setup
     bPlayer = turtle.Turtle()
-    bPlayerpos = PlayerSetup(bPlayer, -offset, config.B_PLAYER_SHAPE)
+    bPlayerpos = PlayerSetup(bPlayer, -offset, config.B_PLAYER_SHAPE, bPlayerTitle)
+    
+    #diceTurtle setup
+    diceTurtle = turtle.Turtle()
+    diceTurtle.penup()
+    diceTurtle.setpos(config.DICEPOS)
 
     while True:
-        aPlayerpos = turn(aPlayer, "A", aPlayerpos, offset)
+        aPlayerpos = turn(aPlayer, "A", aPlayerpos, offset, diceTurtle)
         if aPlayerpos >= limit:
             print("Player A wins")
             break
 
-        bPlayerpos = turn(bPlayer, "B", bPlayerpos, -offset)
+        bPlayerpos = turn(bPlayer, "B", bPlayerpos, -offset, diceTurtle)
         if bPlayerpos >= limit:
             print("Player B wins")
             break
             
-            
 def main():
     DrawMap()
-    GameStart()
+    GameStart("A", "B")
     
     
 turtle.screensize(1000, 1000)
