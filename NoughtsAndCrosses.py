@@ -24,14 +24,18 @@ if mode == "2":
 
 def FindPos(n):
     """Finds centre of square"""
+    
+    #This should be more efficent than a for loop(at the cost of some readability)
     gap = config.SIZE//config.GRID
+
     row = n // config.GRID
-    y = row * gap + gap/2
-    #Flips if odd row
-    if row % config.GRID == 1:
-        x = (-n % config.GRID) * gap + gap/2
+    y = row * gap + gap/2 + config.GRIDPOS[1]
+    if row % 2 == 1:
+        #Flips if odd row
+        x = (n % config.GRID) * -gap - gap/2 - config.GRIDPOS[0]
     else:
-        x = (n % config.GRID) * gap + gap/2
+        #Doesn't flip if not odd row
+        x = (n % config.GRID) * gap + gap/2 + config.GRIDPOS[0]
     return(x, y)
     
     
