@@ -19,9 +19,9 @@ LADDERS = [(4, 14), (8, 11), (17,22)]
 
 
 #Size and positions of grid appears as in turtle
-SIZE = 500
-GRIDPOS = (-250, -250)
-DICEPOS = (-350, -350)
+SIZE = 750
+GRIDPOS = (-330, -330)
+DICEPOS = (-340, -340)
 
 #Drawing/Move speed of all turtles
 DRAW_SPEED = 0

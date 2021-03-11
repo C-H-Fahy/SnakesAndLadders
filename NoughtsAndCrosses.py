@@ -70,11 +70,11 @@ def PlayerSetup(player, offset, shape, title):
     try:
         #Sets players shape
         turtle.register_shape(shape)
-        turtle.shape(shape)
-        print("Player " + title + " is " + shape) 
+        player.shape(shape)
     except turtle.TurtleGraphicsError:
         #If Turtle can't set the players shape
         print("WARNING: " + shape + " is probably missing or invalid")
+    print("Player " + title + " is " + shape) 
     player.penup()
     player.speed(config.DRAW_SPEED)
     playerpos = config.STARTPOS
@@ -158,6 +158,7 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     #diceTurtle setup
     diceTurtle = turtle.Turtle()
     diceTurtle.penup()
+    turtle.hideturtle()
     diceTurtle.setpos(config.DICEPOS)
 
     while True:
@@ -172,10 +173,11 @@ def GameStart(aPlayerTitle, bPlayerTitle):
             break
             
 def main():
+    turtle.screensize(1250, 1250)
     DrawMap()
     GameStart("A", "B")
     
     
-turtle.screensize(1000, 1000)
+turtle.screensize(1250, 1250)
 main()
 
