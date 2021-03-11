@@ -1,14 +1,13 @@
 #AUTHOR: CHFahy
 #CREATED: 2021-03-09
 import turtle
-import config
 import math
 
 def CordToVector(a, b):
     deltax = a[0] - b[0]
     deltay = a[1] - b[1]
     
-    #Finds Direction in radians(converted before return)
+    #Finds Direction in radians(converted when return)
     try:
         direction = math.atan(deltax/deltay)
     except ZeroDivisionError:
@@ -28,32 +27,31 @@ def CordToVector(a, b):
 def midpoint(a, b):
     return ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
 
-def line(a, b):
+def line(x, y):
     """Draws a line between 2 cords"""
     turtle.penup()
-    turtle.setpos(a)
+    turtle.setpos(x)
     turtle.pendown()
-    turtle.setpos(b)
+    turtle.setpos(y)
     
-def VertLine(x):
-    """Draws a verticle line of  500"""
+def VertLine(pos, length):
+    """Draws a verticle line of  SIZE of grid at the position inputed"""
     turtle.penup()
-    turtle.setpos(x, 0)
+    turtle.setpos(pos[0], pos[1])
     turtle.setheading(90)
     turtle.pendown()
-    turtle.forward(500)
+    turtle.forward(length)
     
-def HoriLine(y):
-    """Draws a horizontal line of  500"""
+def HoriLine(pos, length):
+    """Draws a horizontal line of  length of grid at the position inputed"""
     turtle.penup()
-    turtle.setpos(0, y)
+    turtle.setpos(pos[0], pos[1])
     turtle.setheading(0)
     turtle.pendown()
-    turtle.forward(500)
+    turtle.forward(length)
     
-def ladder(comingFrom, to):
+def ladder(comingFrom, to, width):
     """draws a ladder between the two positions"""
-    width = 100//config.GRID
     turtle.color("red")
     
     a = (comingFrom[0] + width, comingFrom[1])
@@ -80,38 +78,8 @@ def ladder(comingFrom, to):
     
     turtle.color("#000000")
 
-def ladder2(comingFrom, to):
-    """draws a ladder between the two positions, ladder must start lower than end point"""
-    width = 100//config.GRID
-    turtle.color("red")
-    
-    a = (comingFrom[0] + width, comingFrom[1])
-    b = (to[0]+ width, to[1])
-    c = (comingFrom[0] - width, comingFrom[1])
-    d = (to[0] - width, to[1])
-    
-    #Draw first line of truss
-    line(a, b)
-
-    #Draw second line of truss
-    line(c, d)
-    
-    #Add steps to ladder
-    e = midpoint(a, b)
-    f = midpoint(c, d)
-    line(e, f)
-    e = midpoint(a, e)
-    f = midpoint(c, f)
-    line(e, f)
-    e = midpoint(midpoint(a, b), b)
-    f = midpoint(midpoint(c, d), d)
-    line(e, f)
-    
-    turtle.color("#000000")
-
-def snake(comingFrom, to):
+def snake(comingFrom, to, width):
     """draws a snake between the two positions"""
-    width = 150//config.GRID
     turtle.color("green")
     line(comingFrom, to)
     turtle.color("#000000")

@@ -10,14 +10,16 @@ import random
 import config
 import shapes
 
+turtle.screensize(1000, 1000)
+
 def FindPos(n):
     """Finds centre of square, returns None if square does not exist"""
-    gap = 500//config.GRID
+    gap = config.SIZE//config.GRID
     a = 0
     for i in range(0, config.GRID):
-        y = gap * i + gap/2
+        y = (gap * i + gap/2) + config.GRIDPOS[1]
         for i in range(0, config.GRID):
-            x = gap * i + gap/2
+            x = (gap * i + gap/2) + config.GRIDPOS[0]
             if a == n:
                 return (x, y)
             a = a + 1
@@ -26,11 +28,11 @@ def DrawMap():
     """Draws Out All The Fixed Stuff"""
     turtle.speed(config.DRAW_SPEED)
     turtle.hideturtle()
-    gap = 500//config.GRID
+    gap = config.SIZE//config.GRID
     #Draw Grid        
     for i in range(0, config.GRID+1):
-        shapes.VertLine(i*gap)
-        shapes.HoriLine(i*gap)
+        shapes.HoriLine((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE)
+        shapes.VertLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE)
     #Draw Numbers
     for i in range(0, config.GRID*config.GRID):
         turtle.penup()
@@ -39,10 +41,12 @@ def DrawMap():
         turtle.write(i)
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]))
+        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), 
+        (config.SIZE/10)//config.GRID)
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]))
+        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), 
+        (config.SIZE/5)//config.GRID)
 
 def PlayerSetup(player, offset):
     """Sets up player, returns players position"""
@@ -97,7 +101,7 @@ def turn(player, title, pos, offset):
     return(pos)
 
 def GameStart():
-    offset = 100//config.GRID
+    offset = (config.SIZE/5)//config.GRID
     limit = config.GRID * config.GRID - 1
 
     #aPlayer setup
@@ -122,7 +126,5 @@ def GameStart():
 def main():
     DrawMap()
     GameStart()
-
-turtle.screensize(1000, 1000)
 main()
 a = input()
