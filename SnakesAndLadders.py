@@ -58,11 +58,11 @@ def DrawMap():
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
         shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), 
-        (config.SIZE/10)//config.GRID)
+        (config.SIZE//10)//config.GRID)
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
         shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), 
-        (config.SIZE/5)//config.GRID)
+        (config.SIZE//5)//config.GRID)
         
 
 def PlayerSetup(player, offset, shape, title):
