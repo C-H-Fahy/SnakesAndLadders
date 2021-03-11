@@ -50,7 +50,7 @@ def DrawMap():
         #Draw Verticle Line
         shapes.LengthLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
     #Draw Numbers
-    for i in range(0, config.GRID*config.GRID):
+    for i in range(0, config.GRID ** 2):
         turtle.penup()
         turtle.setpos(FindPos(i))
         turtle.pendown()
@@ -148,7 +148,7 @@ def turn(player, title, pos, offset):
 
 def GameStart(aPlayerTitle, bPlayerTitle):
     offset = (config.SIZE//5)//config.GRID
-    limit = config.GRID * config.GRID - 1
+    limit = config.GRID ** 2 - 1
 
     #aPlayer setup
     aPlayer = turtle.Turtle()
