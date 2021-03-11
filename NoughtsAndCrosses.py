@@ -161,12 +161,12 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     diceTurtle.setpos(config.DICEPOS)
 
     while True:
-        aPlayerpos = turn(aPlayer, "A", aPlayerpos, offset, diceTurtle)
+        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, diceTurtle)
         if aPlayerpos >= limit:
             print("Player A wins")
             break
 
-        bPlayerpos = turn(bPlayer, "B", bPlayerpos, -offset, diceTurtle)
+        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, diceTurtle)
         if bPlayerpos >= limit:
             print("Player B wins")
             break
