@@ -3,21 +3,37 @@
 
 #External modules
 import turtle
-import time
 import random
+try: 
+    import time
+except ModuleNotFoundError:
+    print("WARNING: Failed to import time, Attempting to proceed")
 
 #Internal modules
-import config
 import shapes
+import config1 as config
 
-turtle.screensize(1000, 1000)
+#Import other configs as config if other configs are picked
+mode = input("Enter 1(or anything else) for config1.py (default) or 2 for config2.py(mode 2): \n")
+if mode == "2":
+    print("using config2.py")
+    try: 
+        import config2 as config
+    except ModuleNotFoundError:
+        print("WARNING: config2.py not found, using config1.py")
 
 def FindPos(n):
     """Finds centre of square"""
     gap = config.SIZE//config.GRID
-    x = (n % config.GRID) * gap + gap/2
-    y = (n // config.GRID) * gap + gap/2
+    row = n // config.GRID
+    y = row * gap + gap/2
+    #Flips if odd row
+    if row % config.GRID == 1:
+        x = (-n % config.GRID) * gap + gap/2
+    else:
+        x = (n % config.GRID) * gap + gap/2
     return(x, y)
+    
     
 def DrawMap():
     """Draws Out All The Fixed Stuff"""
@@ -26,8 +42,10 @@ def DrawMap():
     gap = config.SIZE//config.GRID
     #Draw Grid        
     for i in range(0, config.GRID+1):
-        shapes.HoriLine((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE)
-        shapes.VertLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE)
+        #Draw Horizontal Line
+        shapes.LengthLine((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE, 0)
+        #Draw Verticle Line
+        shapes.LengthLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
     #Draw Numbers
     for i in range(0, config.GRID*config.GRID):
         turtle.penup()
@@ -42,9 +60,16 @@ def DrawMap():
     for i in range(0, len(config.LADDERS)):
         shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), 
         (config.SIZE/5)//config.GRID)
+        
 
-def PlayerSetup(player, offset):
+def PlayerSetup(player, offset, shape):
     """Sets up player, returns players position"""
+    try:
+        #Sets players shape
+        turtle.shape(shape)
+    except turtle.TurtleGraphicsError:
+        #If Turtle can't set the players shape
+        print("WARNING: " + shape + " is probably missing") 
     player.penup()
     player.speed(config.DRAW_SPEED)
     playerpos = config.STARTPOS
@@ -52,12 +77,14 @@ def PlayerSetup(player, offset):
     x = x + offset
     player.setpos(x, y)
     return playerpos
+    
 
 def turn(player, title, pos, offset):
     """Runs players turn, returns players new position"""
     esc = input("Player "+ title + " turn:\n")
     move = random.randint(1, 6)
     print(move)
+    
     #Move Player
     pos = move + pos
     (x, y) = FindPos(pos)
@@ -69,7 +96,12 @@ def turn(player, title, pos, offset):
         if pos == config.LADDERS[i][0]:
             print(title + " gets ladder from " + str(config.LADDERS[i][0]) + " to " + 
             str(config.LADDERS[i][1]))
-            time.sleep(0.5)
+            
+            try:
+                time.sleep(config.DELAY)
+            except NameError:
+                print("WARNING: Delay Failed, likely due to time import or borked config")
+
             pos = config.LADDERS[i][1]
             (x, y) = FindPos(pos)
             x = x + offset
@@ -80,13 +112,19 @@ def turn(player, title, pos, offset):
         if pos == config.SNAKES[i][0]:
             print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
             str(config.SNAKES[i][1]))
-            time.sleep(0.5)
+            
+            try:
+                time.sleep(config.DELAY)
+            except NameError:
+                print("WARNING: Delay Failed, likely due to time import or borked config")
+                
             pos = config.SNAKES[i][1]
             (x, y) = FindPos(pos)
             x = x + offset
             player.setpos(x, y)
             
     return(pos)
+    
 
 def GameStart():
     offset = (config.SIZE/5)//config.GRID
@@ -94,11 +132,11 @@ def GameStart():
 
     #aPlayer setup
     aPlayer = turtle.Turtle()
-    aPlayerpos = PlayerSetup(aPlayer, offset)
+    aPlayerpos = PlayerSetup(aPlayer, offset, config.A_PLAYER_SHAPE)
 
     #bPlayer setup
     bPlayer = turtle.Turtle()
-    bPlayerpos = PlayerSetup(bPlayer, -offset)
+    bPlayerpos = PlayerSetup(bPlayer, -offset, config.B_PLAYER_SHAPE)
 
     while True:
         aPlayerpos = turn(aPlayer, "A", aPlayerpos, offset)
@@ -110,9 +148,13 @@ def GameStart():
         if bPlayerpos >= limit:
             print("Player B wins")
             break
-
+            
+            
 def main():
     DrawMap()
     GameStart()
+    
+    
+turtle.screensize(1000, 1000)
 main()
-a = input()
+
