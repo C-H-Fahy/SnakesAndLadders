@@ -179,8 +179,5 @@ def main():
     turtle.screensize(1250, 1250)
     DrawMap()
     GameStart("A", "B")
-    
-    
-turtle.screensize(1250, 1250)
 main()
 
