@@ -83,27 +83,27 @@ def PlayerSetup(player, offset, shape, title):
     player.setpos(x, y)
     return playerpos
 
-def dice(move, diceTurtle):
+def dice(move):
     try:
         #Sets players shape
         turtle.register_shape(config.DICE[move])
-        diceTurtle.shape(config.DICE[move]) 
-        diceTurtle.showturtle()
+        turtle.shape(config.DICE[move]) 
+        turtle.showturtle()
     except turtle.TurtleGraphicsError:
         #If Turtle can't set the players shape
         print("WARNING: " + config.DICE[move] + " is probably missing or invalid")
-        diceTurtle.hideturtle()
+        turtle.hideturtle()
     except IndexError or NameError:
         print("WARNING: Not enough dice in config.DICE")
-        diceTurtle.hideturtle()
+        turtle.hideturtle()
     finally:
         print("Roll is: " + str(move + 1))
     
-def turn(player, title, pos, offset, diceTurtle):
+def turn(player, title, pos, offset):
     """Runs players turn, returns players new position"""
     esc = input("Player "+ title + " turn:\n")
     move = random.randint(0, config.ROLL - 1)
-    dice(move, diceTurtle)
+    dice(move)
     
     #Move Player
     pos = move + pos + 1
@@ -159,18 +159,17 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     bPlayerpos = PlayerSetup(bPlayer, -offset, config.B_PLAYER_SHAPE, bPlayerTitle)
     
     #diceTurtle setup
-    diceTurtle = turtle.Turtle()
-    diceTurtle.penup()
+    turtle.penup()
     turtle.hideturtle()
-    diceTurtle.setpos(config.DICEPOS)
+    turtle.setpos(config.DICEPOS)
 
     while True:
-        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, diceTurtle)
+        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset)
         if aPlayerpos >= limit:
             print("Player A wins")
             break
 
-        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, diceTurtle)
+        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset)
         if bPlayerpos >= limit:
             print("Player B wins")
             break

@@ -24,7 +24,7 @@ GRIDPOS = (-330, -330)
 DICEPOS = (-340, -340)
 
 #Drawing/Move speed of all turtles
-DRAW_SPEED = 1
+DRAW_SPEED = 0
 
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
