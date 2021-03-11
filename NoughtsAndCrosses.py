@@ -76,7 +76,7 @@ def PlayerSetup(player, offset, shape, title):
         print("WARNING: " + shape + " is probably missing or invalid")
     print("Player " + title + " is " + shape) 
     player.penup()
-    player.speed(config.DRAW_SPEED)
+    player.speed(config.MOVE_SPEED)
     playerpos = config.STARTPOS
     (x, y) = FindPos(playerpos)
     x = x + offset
@@ -147,7 +147,7 @@ def turn(player, title, pos, offset):
     
 
 def GameStart(aPlayerTitle, bPlayerTitle):
-    offset = (config.SIZE/5)//config.GRID
+    offset = (config.SIZE//5)//config.GRID
     limit = config.GRID * config.GRID - 1
 
     #aPlayer setup
