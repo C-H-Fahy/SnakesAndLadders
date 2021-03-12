@@ -32,7 +32,7 @@ def FindPos(n):
     y = row * gap + gap//2 + config.GRIDPOS[1]
     if row & 1:
         #Flips if odd row
-        x = -((n % config.GRID) * gap + gap//2) + config.SIZE + config.GRIDPOS[0]
+        x = ((-(n + 1) % config.GRID)) * gap + gap//2 + config.GRIDPOS[0]
     else:
         #Doesn't flip if not odd row
         x = (n % config.GRID) * gap + gap//2 + config.GRIDPOS[0]
@@ -138,7 +138,7 @@ def turn(player, title, pos, offset):
             (x, y) = FindPos(pos)
             x = x + offset
             player.setpos(x, y)
-            
+    print("Player " + title +  " is on " + str(pos))
     return(pos)
 
 def GameStart(aPlayerTitle, bPlayerTitle):

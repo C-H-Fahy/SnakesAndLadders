@@ -8,11 +8,11 @@ GRID = 5
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
-SNAKES = [(960, 30), (7, 2), (15, 5)]
+SNAKES = [(898, 30), (7, 2), (15, 5)]
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
-LADDERS = [(4, 951), (8, 11), (17,22)]
+LADDERS = [(4, 899), (8, 11), (17,22)]
 
 
 #Size and positions of grid appears as in turtle
