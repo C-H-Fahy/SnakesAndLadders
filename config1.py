@@ -4,7 +4,7 @@
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares
-GRID = 5
+GRID = 31
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible

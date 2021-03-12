@@ -26,10 +26,16 @@ if mode == "2":
 def FindPos(n):
     """Finds centre of square"""
     #This should be more efficent than for loop(at the cost of some readability)
+    
+    #Finds size of one square
     gap = config.SIZE//config.GRID
-
+    
+    #Calculates row using floor division
     row = n // config.GRID
+    #Calculates Y cord using which row it's on then shifts it to the centre of the square
     y = row * gap + gap//2 + config.GRIDPOS[1]
+    
+    #Calculates X cord using modulus then shifts to centre of square
     if row & 1:
         #Flips if odd row
         x = ((-(n + 1) % config.GRID)) * gap + gap//2 + config.GRIDPOS[0]
@@ -37,8 +43,8 @@ def FindPos(n):
         #Doesn't flip if not odd row
         x = (n % config.GRID) * gap + gap//2 + config.GRIDPOS[0]
     return(x, y)
-    
-    
+
+
 def DrawMap():
     """Draws Out All The Fixed Stuff"""
     turtle.speed(config.DRAW_SPEED)
