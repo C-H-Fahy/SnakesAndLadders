@@ -44,12 +44,12 @@ def ladder(comingFrom, to, width):
     
 
     for i in range(1, 5):
-        turtle.forward(length//5)
+        turtle.forward(length/5)
         turtle.left(90)
         turtle.forward(width)
         turtle.backward(width)
         turtle.setheading(direction)
-    turtle.forward(length//5)
+    turtle.forward(length/5)
     turtle.pensize(1)
     turtle.color("black")
     
@@ -62,11 +62,11 @@ def snake(comingFrom, to, width):
     length = turtle.distance(to)
     turtle.setheading(direction)
     turtle.pendown()
-    turtle.pensize((width//4)*2)
+    turtle.pensize((width/4)*2)
     turtle.color("pink")
     turtle.forward(width*2)
     turtle.color("green")
-    turtle.pensize((width//2)*2)
+    turtle.pensize((width/2)*2)
     LengthLine(turtle.pos(), length - width*4, direction)
     turtle.color("black")
 

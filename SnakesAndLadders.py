@@ -25,16 +25,16 @@ if mode == "2":
 def FindPos(n):
     """Finds centre of square"""
     #This should be more efficent than for loop(at the cost of some readability)
-    gap = config.SIZE//config.GRID
+    gap = config.SIZE/config.GRID
 
     row = n // config.GRID
-    y = row * gap + gap//2 + config.GRIDPOS[1]
+    y = row * gap + gap/2 + config.GRIDPOS[1]
     if row & 1:
         #Flips if odd row
-        x = -((n % config.GRID) * gap + gap//2) + config.SIZE + config.GRIDPOS[0]
+        x = -((n % config.GRID) * gap + gap/2) + config.SIZE + config.GRIDPOS[0]
     else:
         #Doesn't flip if not odd row
-        x = (n % config.GRID) * gap + gap//2 + config.GRIDPOS[0]
+        x = (n % config.GRID) * gap + gap/2 + config.GRIDPOS[0]
     return(x, y)
     
     
@@ -42,22 +42,23 @@ def DrawMap():
     """Draws Out All The Fixed Stuff"""
     turtle.speed(config.DRAW_SPEED)
     turtle.hideturtle()
-    gap = config.SIZE//config.GRID
+    gap = config.SIZE/config.GRID
     #Draw Grid        
     for i in range(0, config.GRID+1):
         #Draw Horizontal Line
         shapes.LengthLine((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE, 0)
         #Draw Verticle Line
         shapes.LengthLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
-    #Draw Numbers
-    for i in range(0, config.GRID ** 2):
-        shapes.WriteNumber(i, FindPos(i),  gap//4)
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap//10)
+        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap/10)
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap//5)
+        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap/5)
+        
+    #Draw Numbers
+    for i in range(0, config.GRID ** 2):
+        shapes.WriteNumber(i, FindPos(i),  0)
 
 def PlayerSetup(player, offset, shape, title):
     """Sets up player, returns players position"""
@@ -141,7 +142,7 @@ def turn(player, title, pos, offset):
     
 
 def GameStart(aPlayerTitle, bPlayerTitle):
-    offset = (config.SIZE//5)//config.GRID
+    offset = config.SIZE/(config.GRID*5)
     limit = config.GRID ** 2 - 1
 
     #aPlayer setup
