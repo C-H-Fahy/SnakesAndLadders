@@ -51,19 +51,13 @@ def DrawMap():
         shapes.LengthLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
-        turtle.penup()
-        turtle.setpos(FindPos(i))
-        turtle.pendown()
-        turtle.write(i)
+        shapes.WriteNumber(i, FindPos(i),  gap//4)
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), 
-        (config.SIZE//10)//config.GRID)
+        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap//10)
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), 
-        (config.SIZE//5)//config.GRID)
-        
+        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap//5)
 
 def PlayerSetup(player, offset, shape, title):
     """Sets up player, returns players position"""
@@ -166,12 +160,12 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     while True:
         aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset)
         if aPlayerpos >= limit:
-            print("Player A wins")
+            print("Player " + aPlayerTitle +  " wins")
             break
 
         bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset)
         if bPlayerpos >= limit:
-            print("Player B wins")
+            print("Player " + bPlayerTitle +  " wins")
             break
             
 def main():

@@ -1,13 +1,6 @@
 #AUTHOR: CHFahy
 #CREATED: 2021-03-09
 import turtle
-def line(x, y):
-    """Draws a line between 2 cords"""
-    turtle.penup()
-    turtle.setpos(x)
-    turtle.pendown()
-    turtle.setpos(y)
-    
     
 def LengthLine(pos, length, angle):
     """Draws a line of SIZE of grid at the position and angle inputed"""
@@ -16,6 +9,12 @@ def LengthLine(pos, length, angle):
     turtle.setheading(angle)
     turtle.pendown()
     turtle.forward(length)
+
+def WriteNumber(value, pos, offset):
+        turtle.penup()
+        turtle.setpos(pos[0] - offset, pos[1] + offset)
+        turtle.pendown()
+        turtle.write(value)
     
     
 def ladder(comingFrom, to, width):
@@ -52,11 +51,22 @@ def ladder(comingFrom, to, width):
         turtle.setheading(direction)
     turtle.forward(length//5)
     turtle.pensize(1)
-    
+    turtle.color("black")
     
 def snake(comingFrom, to, width):
     """draws a snake between the two positions"""
+    turtle.pensize(width*2)
+    turtle.penup()
+    turtle.setpos(comingFrom)
+    direction = turtle.towards(to)
+    length = turtle.distance(to)
+    turtle.setheading(direction)
+    turtle.pendown()
+    turtle.pensize((width//4)*2)
+    turtle.color("pink")
+    turtle.forward(width*2)
     turtle.color("green")
-    line(comingFrom, to)
-    turtle.color("#000000")
+    turtle.pensize((width//2)*2)
+    LengthLine(turtle.pos(), length - width*4, direction)
+    turtle.color("black")
 
