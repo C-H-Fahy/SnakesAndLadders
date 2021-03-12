@@ -4,18 +4,15 @@
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares
-GRID = 5
-
-#Starting Square this is the square that the game starts on(counting starts from 0)
-STARTPOS = 0 
+GRID = 31
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
-SNAKES = [(19, 0), (7, 2), (15, 5)]
+SNAKES = [(960, 30), (7, 2), (15, 5)]
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
-LADDERS = [(4, 14), (8, 11), (17,22)]
+LADDERS = [(4, 951), (8, 11), (17,22)]
 
 
 #Size and positions of grid appears as in turtle
@@ -29,6 +26,9 @@ MOVE_SPEED = 0
 
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
+
+#Starting Square this is the square that the game starts on(counting starts from 0)
+STARTPOS = 0 
 
 #Max roll
 ROLL = 6

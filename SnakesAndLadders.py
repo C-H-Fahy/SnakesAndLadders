@@ -28,13 +28,13 @@ def FindPos(n):
     gap = config.SIZE/config.GRID
 
     row = n // config.GRID
-    y = row * gap + gap/2 + config.GRIDPOS[1]
+    y = row * gap + gap//2 + config.GRIDPOS[1]
     if row & 1:
         #Flips if odd row
-        x = -((n % config.GRID) * gap + gap/2) + config.SIZE + config.GRIDPOS[0]
+        x = -((n % config.GRID) * gap + gap//2) + config.SIZE + config.GRIDPOS[0]
     else:
         #Doesn't flip if not odd row
-        x = (n % config.GRID) * gap + gap/2 + config.GRIDPOS[0]
+        x = (n % config.GRID) * gap + gap//2 + config.GRIDPOS[0]
     return(x, y)
     
     
