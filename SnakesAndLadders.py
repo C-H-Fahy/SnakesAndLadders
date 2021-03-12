@@ -6,6 +6,7 @@ import turtle
 import random
 try: 
     import time
+    #The code will be able to run without time being imported correctly
 except ModuleNotFoundError:
     print("WARNING: Failed to import time, Attempting to proceed")
 
@@ -31,7 +32,8 @@ def FindPos(n):
     y = row * gap + gap//2 + config.GRIDPOS[1]
     if row & 1:
         #Flips if odd row
-        x = -((n % config.GRID) * gap + gap//2) + config.SIZE + config.GRIDPOS[0]
+        #x = -((n % config.GRID) * gap) + config.SIZE + config.GRIDPOS[0]
+        x = -(n % config.GRID) * gap + config.GRIDPOS[0] + config.SIZE - gap + gap//2
     else:
         #Doesn't flip if not odd row
         x = (n % config.GRID) * gap + gap//2 + config.GRIDPOS[0]
@@ -132,14 +134,13 @@ def turn(player, title, pos, offset):
                 time.sleep(config.DELAY)
             except NameError:
                 print("WARNING: Delay Failed, likely due to time import or borked config")
-                
+
             pos = config.SNAKES[i][1]
             (x, y) = FindPos(pos)
             x = x + offset
             player.setpos(x, y)
             
     return(pos)
-    
 
 def GameStart(aPlayerTitle, bPlayerTitle):
     offset = config.SIZE//(config.GRID*5)
