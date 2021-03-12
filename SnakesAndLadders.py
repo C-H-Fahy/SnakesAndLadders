@@ -25,7 +25,7 @@ if mode == "2":
 def FindPos(n):
     """Finds centre of square"""
     #This should be more efficent than for loop(at the cost of some readability)
-    gap = config.SIZE/config.GRID
+    gap = config.SIZE//config.GRID
 
     row = n // config.GRID
     y = row * gap + gap//2 + config.GRIDPOS[1]
@@ -142,7 +142,7 @@ def turn(player, title, pos, offset):
     
 
 def GameStart(aPlayerTitle, bPlayerTitle):
-    offset = config.SIZE/(config.GRID*5)
+    offset = config.SIZE//(config.GRID*5)
     limit = config.GRID ** 2 - 1
 
     #aPlayer setup
