@@ -17,9 +17,9 @@ import config1 as config
 #Import other configs as config if other configs are picked
 mode = input("Enter 1(or anything else) for config1.py (default) or 2 for config2.py(mode 2): \n")
 if mode == "2":
-    print("using config2.py")
     try: 
         import config2 as config
+        print("using config2.py")
     except ModuleNotFoundError:
         print("WARNING: config2.py not found, using config1.py")
 
@@ -48,25 +48,32 @@ def FindPos(n):
 
 def DrawMap():
     """Draws Out All The Fixed Stuff"""
+    #Turns tracer on or off and sets drawspeed
+    turtle.tracer(config.DRAW_TRACER)
     turtle.speed(config.DRAW_SPEED)
     turtle.hideturtle()
-    gap = config.SIZE/config.GRID
+    #Finds size of one square
+    gap = config.SIZE//config.GRID
     #Draw Grid        
     for i in range(0, config.GRID+1):
         #Draw Horizontal Line
         shapes.LengthLine((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE, 0)
         #Draw Verticle Line
         shapes.LengthLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
+
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
         shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap/10)
+
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
         shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap/5)
-        
+
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
         shapes.WriteNumber(i, FindPos(i))
+
+    turtle.tracer(True)
 
 def PlayerSetup(player, offset, shape, title):
     """Sets up player, returns players position"""
@@ -89,27 +96,33 @@ def PlayerSetup(player, offset, shape, title):
 def dice(move):
     try:
         #Sets dice shape
-        turtle.register_shape(config.DICE[move])
-        turtle.shape(config.DICE[move]) 
+        turtle.register_shape(config.DICE[move - 1])
+        turtle.shape(config.DICE[move - 1]) 
         turtle.showturtle()
     except turtle.TurtleGraphicsError:
         #If Turtle can't set the dice shape
-        print("WARNING: " + config.DICE[move] + " is probably missing or invalid")
+        print("WARNING: " + config.DICE[move - 1] + " is probably missing or invalid")
         turtle.hideturtle()
     except IndexError or NameError:
         print("WARNING: Not enough dice in config.DICE")
         turtle.hideturtle()
     finally:
-        print("Roll is: " + str(move + 1))
+        print("Roll is: " + str(move))
+        
+def AniDelay():
+    try:
+        time.sleep(config.DELAY)
+    except NameError:
+        print("WARNING: Delay Failed, likely due to time import or borked config")
     
 def turn(player, title, pos, offset):
     """Runs players turn, returns players new position"""
     esc = input("Player "+ title + " turn:\n")
-    move = random.randint(0, config.ROLL - 1)
+    move = random.randint(1, config.ROLL)
     dice(move)
     
     #Move Player
-    pos = move + pos + 1
+    pos = move + pos
     (x, y) = FindPos(pos)
     x = x + offset
     player.setpos(x, y)
@@ -119,11 +132,8 @@ def turn(player, title, pos, offset):
         if pos == config.LADDERS[i][0]:
             print(title + " gets ladder from " + str(config.LADDERS[i][0]) + " to " + 
             str(config.LADDERS[i][1]))
-            
-            try:
-                time.sleep(config.DELAY)
-            except NameError:
-                print("WARNING: Delay Failed, likely due to time import or borked config")
+            #sleeps for config.DELAY
+            AniDelay()
 
             pos = config.LADDERS[i][1]
             (x, y) = FindPos(pos)
@@ -136,11 +146,9 @@ def turn(player, title, pos, offset):
             print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
             str(config.SNAKES[i][1]))
             
-            try:
-                time.sleep(config.DELAY)
-            except NameError:
-                print("WARNING: Delay Failed, likely due to time import or borked config")
-
+            #sleeps for config.DELAY
+            AniDelay()
+            
             pos = config.SNAKES[i][1]
             (x, y) = FindPos(pos)
             x = x + offset
@@ -149,6 +157,7 @@ def turn(player, title, pos, offset):
     return(pos)
 
 def GameStart(aPlayerTitle, bPlayerTitle):
+    """Starts one game, returns True if aPlayer has won"""
     offset = config.SIZE//(config.GRID*5)
     limit = config.GRID ** 2 - 1
 
@@ -159,26 +168,61 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     #bPlayer setup
     bPlayer = turtle.Turtle()
     bPlayerpos = PlayerSetup(bPlayer, -offset, config.B_PLAYER_SHAPE, bPlayerTitle)
-    
+
     #diceTurtle setup
     turtle.penup()
     turtle.hideturtle()
     turtle.setpos(config.DICEPOS)
 
-    while True:
+    game = True
+    while game:
         aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset)
         if aPlayerpos >= limit:
             print("Player " + aPlayerTitle +  " wins")
+            return(True)
             break
 
         bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset)
         if bPlayerpos >= limit:
             print("Player " + bPlayerTitle +  " wins")
+            return(False)
             break
-            
+
 def main():
     turtle.screensize(1250, 1250)
+    turtle.bgcolor("#ffffe6")
     DrawMap()
-    GameStart("A", "B")
-main()
+    aPlayerTitle = input("Enter player A's name: \n")
+    bPlayerTitle = input("Enter player B's name: \n")
+    aPlayerWins = 0
+    bPlayerWins = 0
+    esc = ""
+    while esc != "exit":
+        win = GameStart(aPlayerTitle, bPlayerTitle)
+        if win:
+            aPlayerWins = aPlayerWins + 1
+        else:
+            bPlayerWins = bPlayerWins + 1
 
+        try:
+            #Sets turtle/dice to WIN_SHAPE
+            turtle.register_shape(config.WIN_SHAPE)
+            turtle.shape(config.WIN_SHAPE)
+            #Move to centre
+            turtle.setpos(config.GRIDPOS[0] + config.SIZE//2, config.GRIDPOS[1] + config.SIZE//2)
+            #reveals turtle
+            turtle.showturtle()
+        except turtle.TurtleGraphicsError:
+            #If Turtle can't set the dice shape
+            print("WARNING: " + config.WIN_SHAPE + " is probably missing or invalid")
+            turtle.hideturtle()
+        except NameError:
+            print("WARNING: config.Win_SHAPE not set")
+            turtle.hideturtle()
+
+        AniDelay()
+        print(aPlayerTitle + " has won: " + str(aPlayerWins))
+        print(bPlayerTitle + " has won: " + str(bPlayerWins))
+
+        esc = input("Type 'exit' to exit: \n")
+main()

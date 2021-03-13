@@ -53,19 +53,24 @@ def ladder(comingFrom, to, width):
 
 def snake(comingFrom, to, width):
     """draws a snake between the two positions"""
-    turtle.pensize(width*2)
     turtle.penup()
     turtle.setpos(comingFrom)
     direction = turtle.towards(to)
     length = turtle.distance(to)
     turtle.setheading(direction)
     turtle.pendown()
-    turtle.pensize(width/2)
+    #Draws Tongue 
+    turtle.pensize(width*0.90)
     turtle.color("pink")
     turtle.forward(width*2)
-    turtle.color("green")
+    #Set colour light green
+    turtle.color("#00ff00")
+    #Draws Head
+    turtle.pensize(width*3)
+    turtle.forward(width)
+    #Draws Body
     turtle.pensize(width)
-    turtle.forward(length - width*2)
+    turtle.forward(length - width*4)
     #Reset Turtle
     turtle.pensize(1)
     turtle.color("black")

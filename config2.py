@@ -4,15 +4,15 @@
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares
-GRID = 5
+GRID = 31
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
-SNAKES = [(7, 2), (20, 0), (23, 13)]
+SNAKES = [(868, 30), (7, 2)]
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
-LADDERS = [(4, 14), (8, 11), (17,22)]
+LADDERS = [(4, 899), (8, 11)]
 
 
 #Size and positions of grid appears as in turtle
@@ -40,4 +40,3 @@ ROLL = 6
 A_PLAYER_SHAPE = "bull.gif"
 B_PLAYER_SHAPE = "cow.gif"
 DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif", "dice6.gif"]
-WIN_SHAPE = "win.gif"
