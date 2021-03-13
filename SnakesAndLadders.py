@@ -65,7 +65,7 @@ def DrawMap():
         
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
-        shapes.WriteNumber(i, FindPos(i),  0)
+        shapes.WriteNumber(i, FindPos(i))
 
 def PlayerSetup(player, offset, shape, title):
     """Sets up player, returns players position"""

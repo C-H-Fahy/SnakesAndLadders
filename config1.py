@@ -8,7 +8,7 @@ GRID = 31
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
-SNAKES = [(898, 30), (7, 2), (15, 5)]
+SNAKES = [(868, 30), (7, 2), (15, 5)]
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
