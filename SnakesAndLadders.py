@@ -190,7 +190,7 @@ def GameStart(aPlayerTitle, bPlayerTitle):
 
 def main():
     #Setup screen and background
-    turtle.screensize(1250, 1250)
+    turtle.screensize(800, 800)
     turtle.bgcolor("#ffffe6")
     #Draw Board
     DrawMap()

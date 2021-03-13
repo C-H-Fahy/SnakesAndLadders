@@ -17,8 +17,8 @@ LADDERS = [(4, 899), (8, 11)]
 
 #Size and positions of grid appears as in turtle
 SIZE = 750
-GRIDPOS = (-330, -330)
-DICEPOS = (-340, -340)
+GRIDPOS = (-375, -375)
+DICEPOS = (-400, -400)
 
 #Drawing/Move speed of all drawing turtle
 DRAW_SPEED = 0
@@ -40,3 +40,4 @@ ROLL = 6
 A_PLAYER_SHAPE = "bull.gif"
 B_PLAYER_SHAPE = "cow.gif"
 DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif", "dice6.gif"]
+WIN_SHAPE = "win.gif"
