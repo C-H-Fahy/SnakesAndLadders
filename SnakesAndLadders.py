@@ -29,7 +29,7 @@ def FindPos(n):
     
     #Calculates row using floor division
     y = (n // config.GRID)
-    #Calculates column(as x) cord using modulus
+    #Calculates column(as x) using modulus
     if y & 1:
         #Flips column if odd row using using a really efficent trick by 
         #modulus after logical NOTing n
