@@ -189,15 +189,19 @@ def GameStart(aPlayerTitle, bPlayerTitle):
             break
 
 def main():
+    #Setup screen and background
     turtle.screensize(1250, 1250)
     turtle.bgcolor("#ffffe6")
+    #Draw Board
     DrawMap()
+    #Take player names
     aPlayerTitle = input("Enter player A's name: \n")
     bPlayerTitle = input("Enter player B's name: \n")
     aPlayerWins = 0
     bPlayerWins = 0
     esc = ""
     while esc != "exit":
+        #Start game
         win = GameStart(aPlayerTitle, bPlayerTitle)
         if win:
             aPlayerWins = aPlayerWins + 1
