@@ -27,21 +27,22 @@ def FindPos(n):
     """Finds centre of square"""
     #This should be more efficent than for loop(at the cost of some readability)
     
-    #Finds size of one square
-    gap = config.SIZE//config.GRID
-    
     #Calculates row using floor division
-    row = n // config.GRID
-    #Calculates Y cord using which row it's on then shifts it to the centre of the square
-    y = row * gap + gap//2 + config.GRIDPOS[1]
-    
-    #Calculates X cord using modulus then shifts to centre of square
-    if row & 1:
-        #Flips if odd row
-        x = ((-(n + 1) % config.GRID)) * gap + gap//2 + config.GRIDPOS[0]
+    y = (n // config.GRID)
+    #Calculates column(as x) cord using modulus
+    if y & 1:
+        #Flips column if odd row using using a really efficent trick by 
+        #modulus after logical NOTing n
+        x = (~n % config.GRID) 
     else:
         #Doesn't flip if not odd row
-        x = (n % config.GRID) * gap + gap//2 + config.GRIDPOS[0]
+        x = (n % config.GRID)
+              
+    #Finds size of one square
+    gap = config.SIZE//config.GRID
+    #transforms column(x) and row(y)to x and y cord
+    x = x * gap + gap//2 + config.GRIDPOS[0]
+    y = y * gap + gap//2 + config.GRIDPOS[1]
     return(x, y)
 
 
