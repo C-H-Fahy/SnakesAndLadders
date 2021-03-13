@@ -202,6 +202,7 @@ def main():
     esc = ""
     while esc != "exit":
         #Start game
+        print("NEW GAME")
         win = GameStart(aPlayerTitle, bPlayerTitle)
         if win:
             aPlayerWins = aPlayerWins + 1
