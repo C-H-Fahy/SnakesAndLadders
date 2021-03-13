@@ -14,6 +14,10 @@ SNAKES = [(7, 2), (20, 0), (23, 13)]
 #any number of ladders is possible
 LADDERS = [(4, 14), (8, 11), (17,22)]
 
+#Determines if the player needs to get exactly the right number from their position
+#to the endsquare to win 
+#if this is True the player will go back the same number of spaces they rolled
+ROLLBACK = True
 
 #Size and positions of grid appears as in turtle
 SIZE = 750

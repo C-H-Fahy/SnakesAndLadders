@@ -115,14 +115,19 @@ def AniDelay():
     except NameError:
         print("WARNING: Delay Failed, likely due to time import or borked config")
     
-def turn(player, title, pos, offset):
+def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
     esc = input("Player "+ title + " turn:\n")
     move = random.randint(1, config.ROLL)
     dice(move)
     
-    #Move Player
+    #Roll player back if rollback is enabled and they don't get the exact number
     pos = move + pos
+    if pos > limit and config.ROLLBACK:
+        pos = pos - move*2
+        if pos < 0:
+            pos = 0
+    #Move Player to new position        
     (x, y) = FindPos(pos)
     x = x + offset
     player.setpos(x, y)
@@ -134,7 +139,7 @@ def turn(player, title, pos, offset):
             str(config.LADDERS[i][1]))
             #sleeps for config.DELAY
             AniDelay()
-
+            #Sets new position
             pos = config.LADDERS[i][1]
             (x, y) = FindPos(pos)
             x = x + offset
@@ -145,10 +150,9 @@ def turn(player, title, pos, offset):
         if pos == config.SNAKES[i][0]:
             print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
             str(config.SNAKES[i][1]))
-            
             #sleeps for config.DELAY
             AniDelay()
-            
+            #Sets new position
             pos = config.SNAKES[i][1]
             (x, y) = FindPos(pos)
             x = x + offset
@@ -176,13 +180,13 @@ def GameStart(aPlayerTitle, bPlayerTitle):
 
     game = True
     while game:
-        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset)
+        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
         if aPlayerpos >= limit:
             print("Player " + aPlayerTitle +  " wins")
             return(True)
             break
 
-        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset)
+        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, limit)
         if bPlayerpos >= limit:
             print("Player " + bPlayerTitle +  " wins")
             return(False)
