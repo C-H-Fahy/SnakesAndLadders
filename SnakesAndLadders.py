@@ -117,7 +117,7 @@ def AniDelay():
     
 def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
-    esc = input("Player "+ title + " turn:\n")
+    esc = input("Player "+ title + " turn(press enter):\n")
     move = random.randint(1, config.ROLL)
     dice(move)
     

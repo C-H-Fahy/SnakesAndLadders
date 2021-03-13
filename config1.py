@@ -24,12 +24,12 @@ SIZE = 750
 GRIDPOS = (-375, -375)
 DICEPOS = (-400, -400)
 
-#Drawing/Move speed of all drawing turtle
+#Drawing/Move speed of drawing turtle
 DRAW_SPEED = 0
 #Determine if Turtles animinations are on while drawing
 DRAW_TRACER = False
 #Move speed of characters
-MOVE_SPEED = 0
+MOVE_SPEED = 1
 
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
