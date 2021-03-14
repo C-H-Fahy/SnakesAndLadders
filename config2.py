@@ -23,6 +23,8 @@ ROLLBACK = False
 SIZE = 750
 GRIDPOS = (-375, -375)
 DICEPOS = (-400, -400)
+SCREEN_SIZE = (800, 800)
+BG_COLOR = "#ffffe6"
 
 #Drawing/Move speed of drawing turtle
 DRAW_SPEED = 0

@@ -193,8 +193,8 @@ def GameStart(aPlayerTitle, bPlayerTitle):
 
 def main():
     #Setup screen and background
-    turtle.screensize(800, 800)
-    turtle.bgcolor("#ffffe6")
+    turtle.screensize(config.SCREEN_SIZE[0], config.SCREEN_SIZE[1])
+    turtle.bgcolor(config.BG_COLOR)
     #Draw Board
     DrawMap()
     #Take player names
