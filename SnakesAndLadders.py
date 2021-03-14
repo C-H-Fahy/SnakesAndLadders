@@ -32,7 +32,7 @@ def FindPos(n):
     #Calculates column(as x) using modulus
     if y & 1:
         #Flips column if odd row using using a really efficent trick by 
-        #modulus after logical NOTing n
+        #modulus after Bitwise NOTing n
         x = (~n % config.GRID) 
     else:
         #Doesn't flip if not odd row
