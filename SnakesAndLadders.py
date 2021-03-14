@@ -178,8 +178,7 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     turtle.hideturtle()
     turtle.setpos(config.DICEPOS)
 
-    game = True
-    while game:
+    while True:
         aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
         if aPlayerpos >= limit:
             print("Player " + aPlayerTitle +  " wins")
