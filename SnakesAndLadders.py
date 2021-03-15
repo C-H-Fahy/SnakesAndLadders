@@ -146,7 +146,7 @@ def turn(player, title, pos, offset, limit):
     #Roll player back if rollback is enabled and they don't get the exact number
     pos = move + pos
     if pos > limit and config.ROLLBACK:
-        pos = pos - move*2
+        pos = pos - move
         if pos < 0:
             pos = 0
 
