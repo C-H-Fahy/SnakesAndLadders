@@ -136,10 +136,8 @@ def turn(player, title, pos, offset, limit):
     #Sets flag
     slFlag = True
 
-    #can be taken per turn to avoid weirdness
     #Check to see if player is on a Ladder and sets new position
-    #This is so portion is so only one Snake and Ladder
-    #can be taken per turn to avoid weirdness
+    #Only one Snake and Ladder can be taken per turn to avoid weirdness
     for i in range (0, len(config.LADDERS)):
         if pos == config.LADDERS[i][0] and slFlag:
             print(title + " gets ladder from " + str(config.LADDERS[i][0]) + " to " + 
