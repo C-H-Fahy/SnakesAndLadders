@@ -137,7 +137,7 @@ def SnakeLadder(pos, title):
     #Returns 
     return(pos)
     
-def turn(player, title, pos, offset, limit):
+def Turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
     print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
@@ -148,9 +148,9 @@ def turn(player, title, pos, offset, limit):
     if pos > limit and config.ROLLBACK:
         #Finds amount over
         over = pos - limit
-        print("You rolled over, bouncing back: " + str(over))
         #Limit - amount over
         pos = limit - over
+        print("You rolled over by " + str(over) + ", bouncing back to " + str(pos))
         if pos < 0:
             pos = 0
     #Move Player to new position        
@@ -190,13 +190,13 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     turtle.setpos(config.DICEPOS)
 
     while True:
-        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
+        aPlayerpos = Turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
         if aPlayerpos >= limit:
             print("Player " + aPlayerTitle +  " wins")
             return(True)
             break
 
-        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, limit)
+        bPlayerpos = Turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, limit)
         if bPlayerpos >= limit:
             print("Player " + bPlayerTitle +  " wins")
             return(False)
