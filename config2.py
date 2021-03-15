@@ -4,14 +4,15 @@
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares
-GRID = 20
+GRID = 30
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
-SNAKES = ((324, 67), (296, 21), (210, 96), (261, 2))
+SNAKES = ((324, 67), (296, 22), (210, 96), (261, 2))
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
+#It would be a good idea to avoid having snakes and ladders on the same location as this may be buggy
 LADDERS = ((245, 387), (168, 220), (215, 268), (21, 158), (45, 166))
 
 #Determines if the player needs to get exactly the right number from their position
