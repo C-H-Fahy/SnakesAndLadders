@@ -127,36 +127,46 @@ def turn(player, title, pos, offset, limit):
         pos = pos - move*2
         if pos < 0:
             pos = 0
+
     #Move Player to new position        
     (x, y) = FindPos(pos)
     x = x + offset
     player.setpos(x, y)
-        
-    #Check to see if player is on Ladder and move them if they are
+
+    #Sets flag
+    slFlag = True
+
+    #can be taken per turn to avoid weirdness
+    #Check to see if player is on a Ladder and sets new position
+    #This is so portion is so only one Snake and Ladder
+    #can be taken per turn to avoid weirdness
     for i in range (0, len(config.LADDERS)):
-        if pos == config.LADDERS[i][0]:
+        if pos == config.LADDERS[i][0] and slFlag:
             print(title + " gets ladder from " + str(config.LADDERS[i][0]) + " to " + 
             str(config.LADDERS[i][1]))
-            #sleeps for config.DELAY
-            AniDelay()
-            #Sets new position
+            #Finds new position
             pos = config.LADDERS[i][1]
-            (x, y) = FindPos(pos)
-            x = x + offset
-            player.setpos(x, y)
-            
-    #Check to see if player is on Snake and move them if they are
+            #Stops more moves
+            slFlag = False
+    #Check to see if player is on a Snake
     for i in range (0, len(config.SNAKES)):
-        if pos == config.SNAKES[i][0]:
+        if pos == config.SNAKES[i][0] and slFlag:
             print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
             str(config.SNAKES[i][1]))
-            #sleeps for config.DELAY
-            AniDelay()
-            #Sets new position
+            #Finds new position
             pos = config.SNAKES[i][1]
-            (x, y) = FindPos(pos)
-            x = x + offset
-            player.setpos(x, y)
+            #Stops more moves
+            slFlag = False
+            
+    #Moves to new ladder/snake position if ladder/snake is taken        
+    if not(slFlag):
+        #Delay so that taking of the snake and ladder is clear
+        AniDelay()
+        #Move to new position
+        (x, y) = FindPos(pos)
+        x = x + offset
+        player.setpos(x, y)
+        
     print("Player " + title +  " is on " + str(pos))
     return(pos)
 
