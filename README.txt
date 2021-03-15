@@ -10,6 +10,12 @@ A second example config is also included for your convienence and can be used by
 
 Ladders also have priority over snakes, only one Snake/Ladder can be taken per turn
 
+
+Also Turtle is strange and hates being run in IDLE on Windows(I wrote this on Fedora Workstation, but tested it on windows)
+and Turtle goes non-responsive sometimes due to unknown reasons sometimes that seem to have nothing to do with my code.
+
+I would recommend running it from the python command line(which on windows is done thru just double clicking the SnakesAndLadders.py)
+
 Thank you for reading
 
 -CHFahy
