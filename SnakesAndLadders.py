@@ -63,11 +63,11 @@ def DrawMap():
 
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap/10)
+        shapes.Snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap/10)
 
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap/5)
+        shapes.Ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap/5)
 
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
@@ -93,7 +93,7 @@ def PlayerSetup(player, offset, shape, title):
     player.setpos(x, y)
     return playerpos
 
-def dice(move):
+def Dice(move):
     try:
         #Sets dice shape
         turtle.register_shape(config.DICE[move - 1])
@@ -142,7 +142,7 @@ def Turn(player, title, pos, offset, limit):
     print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
     move = random.randint(1, config.ROLL)
-    dice(move)
+    Dice(move)
     pos = move + pos
     #Roll player back if rollback is enabled and they don't get the exact number
     if pos > limit and config.ROLLBACK:
