@@ -8,11 +8,11 @@ GRID = 20
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
+#Ladders have priority over snakes, only one Snake/Ladder can be taken per turn
 SNAKES = ((324, 67), (296, 22), (210, 96), (261, 2))
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
-#It would be a good idea to avoid having snakes and ladders on the same location as this may be weird
 LADDERS = ((245, 387), (168, 220), (215, 268), (21, 158), (45, 166))
 
 #Determines if the player needs to get exactly the right number from their position
