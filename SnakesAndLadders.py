@@ -114,6 +114,28 @@ def AniDelay():
         time.sleep(config.DELAY)
     except NameError:
         print("WARNING: Delay Failed, likely due to time import or borked config")
+        
+        
+def SnakeLadder(pos, title):
+    """Finds Position after snake or ladder, returns old position if on same pos"""
+    #Check to see if player is on a Ladder
+    for i in range (0, len(config.LADDERS)):
+        if pos == config.LADDERS[i][0]:
+            print(title + " gets ladder from " + str(config.LADDERS[i][0]) + " to " + 
+            str(config.LADDERS[i][1]))
+            #Finds new position
+            return(config.LADDERS[i][1])
+            #Stops more moves
+    #Check to see if player is on a Snake
+    for i in range (0, len(config.SNAKES)):
+        if pos == config.SNAKES[i][0]:
+            print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
+            str(config.SNAKES[i][1]))
+            #Finds new position
+            return(config.SNAKES[i][1])
+            #Stops more moves
+    #Returns 
+    return(pos)
     
 def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
@@ -132,39 +154,16 @@ def turn(player, title, pos, offset, limit):
     (x, y) = FindPos(pos)
     x = x + offset
     player.setpos(x, y)
-
-    #Sets flag
-    slFlag = True
-
-    #Check to see if player is on a Ladder and sets new position
-    #Only one Snake and Ladder can be taken per turn to avoid weirdness
-    for i in range (0, len(config.LADDERS)):
-        if pos == config.LADDERS[i][0] and slFlag:
-            print(title + " gets ladder from " + str(config.LADDERS[i][0]) + " to " + 
-            str(config.LADDERS[i][1]))
-            #Finds new position
-            pos = config.LADDERS[i][1]
-            #Stops more moves
-            slFlag = False
-    #Check to see if player is on a Snake
-    for i in range (0, len(config.SNAKES)):
-        if pos == config.SNAKES[i][0] and slFlag:
-            print(title + " gets snake from " + str(config.SNAKES[i][0]) + " to "  + 
-            str(config.SNAKES[i][1]))
-            #Finds new position
-            pos = config.SNAKES[i][1]
-            #Stops more moves
-            slFlag = False
             
     #Moves to new ladder/snake position if ladder/snake is taken        
-    if not(slFlag):
+    newpos = SnakeLadder(pos, title)
+    if newpos != pos:
         #Delay so that taking of the snake and ladder is clear
         AniDelay()
         #Move to new position
-        (x, y) = FindPos(pos)
+        (x, y) = FindPos(newpos)
         x = x + offset
         player.setpos(x, y)
-        
     print("Player " + title +  " is on " + str(pos))
     return(pos)
 
