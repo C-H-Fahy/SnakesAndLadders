@@ -8,11 +8,11 @@ GRID = 20
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible
-SNAKES = [(324, 67), (296, 21), (210, 96), (261, 2)]
+SNAKES = ((324, 67), (296, 21), (210, 96), (261, 2))
 
 #Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
-LADDERS = [(245, 387), (168, 220), (215, 268), (21, 158), (45, 166)]
+LADDERS = ((245, 387), (168, 220), (215, 268), (21, 158), (45, 166))
 
 #Determines if the player needs to get exactly the right number from their position
 #to the endsquare to win 
@@ -45,5 +45,5 @@ ROLL = 6
 #Shape Filenames
 A_PLAYER_SHAPE = "bull.gif"
 B_PLAYER_SHAPE = "cow.gif"
-DICE = ["dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif", "dice6.gif"]
+DICE = ("dice1.gif", "dice2.gif", "dice3.gif", "dice4.gif", "dice5.gif", "dice6.gif")
 WIN_SHAPE = "win.gif"
