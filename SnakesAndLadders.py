@@ -158,10 +158,11 @@ def turn(player, title, pos, offset, limit):
     #Moves to new ladder/snake position if ladder/snake is taken        
     newpos = SnakeLadder(pos, title)
     if newpos != pos:
+        pos = newpos
         #Delay so that taking of the snake and ladder is clear
         AniDelay()
         #Move to new position
-        (x, y) = FindPos(newpos)
+        (x, y) = FindPos(pos)
         x = x + offset
         player.setpos(x, y)
     print("Player " + title +  " is on " + str(pos))
