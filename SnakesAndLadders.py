@@ -139,9 +139,9 @@ def SnakeLadder(pos, title):
     
 def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
+    print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
     move = random.randint(1, config.ROLL)
-    print("Player" + title + " is starting on " + str(pos))
     dice(move)
     pos = move + pos
     #Roll player back if rollback is enabled and they don't get the exact number
@@ -168,7 +168,7 @@ def turn(player, title, pos, offset, limit):
         (x, y) = FindPos(pos)
         x = x + offset
         player.setpos(x, y)
-    print("Player " + title +  " is on " + str(pos) + "\n\n")
+    print("Player " + title +  " is on " + str(pos))
     return(pos)
 
 def GameStart(aPlayerTitle, bPlayerTitle):
