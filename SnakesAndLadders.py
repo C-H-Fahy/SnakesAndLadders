@@ -23,7 +23,7 @@ if mode == "2":
     except ModuleNotFoundError:
         print("WARNING: config2.py not found, using config1.py")
 
-def FindPos(n):
+def find_pos(n):
     """Finds centre of square"""
     #This should be more efficent than for loop(at the cost of some readability)
     
@@ -46,9 +46,9 @@ def FindPos(n):
     return(x, y)
 
 
-def DrawMap():
+def draw_map():
     """Draws Out All The Fixed Stuff"""
-    #Turns tracer on or off and sets drawspeed
+    #turns tracer on or off and sets drawspeed
     turtle.tracer(config.DRAW_TRACER)
     turtle.speed(config.DRAW_SPEED)
     turtle.hideturtle()
@@ -57,25 +57,25 @@ def DrawMap():
     #Draw Grid        
     for i in range(0, config.GRID+1):
         #Draw Horizontal Line
-        shapes.LengthLine((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE, 0)
+        shapes.length_line((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE, 0)
         #Draw Verticle Line
-        shapes.LengthLine((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
+        shapes.length_line((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
 
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.Snake(FindPos(config.SNAKES[i][0]), FindPos(config.SNAKES[i][1]), gap/10)
+        shapes.snake(find_pos(config.SNAKES[i][0]), find_pos(config.SNAKES[i][1]), gap/10)
 
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.Ladder(FindPos(config.LADDERS[i][0]), FindPos(config.LADDERS[i][1]), gap/5)
+        shapes.ladder(find_pos(config.LADDERS[i][0]), find_pos(config.LADDERS[i][1]), gap/5)
 
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
-        shapes.WriteNumber(i, FindPos(i))
+        shapes.write_number(i, find_pos(i))
 
     turtle.tracer(True)
 
-def PlayerSetup(player, offset, shape, title):
+def player_setup(player, offset, shape, title):
     """Sets up player, returns players position"""
     try:
         #Sets players shape
@@ -88,12 +88,12 @@ def PlayerSetup(player, offset, shape, title):
     player.penup()
     player.speed(config.MOVE_SPEED)
     playerpos = config.STARTPOS
-    (x, y) = FindPos(playerpos)
+    (x, y) = find_pos(playerpos)
     x = x + offset
     player.setpos(x, y)
     return playerpos
 
-def Dice(move):
+def dice(move):
     try:
         #Sets dice shape
         turtle.register_shape(config.DICE[move - 1])
@@ -109,14 +109,14 @@ def Dice(move):
     finally:
         print("Roll is: " + str(move))
         
-def AniDelay():
+def ani_delay():
     try:
         time.sleep(config.DELAY)
     except NameError:
         print("WARNING: Delay Failed, likely due to time import or borked config")
         
         
-def SnakeLadder(pos, title):
+def snake_ladder(pos, title):
     """Finds Position after snake or ladder, returns old position if on same pos"""
     #Check to see if player is on a Ladder
     for i in range (0, len(config.LADDERS)):
@@ -137,12 +137,12 @@ def SnakeLadder(pos, title):
     #Returns 
     return(pos)
     
-def Turn(player, title, pos, offset, limit):
+def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
     print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
     move = random.randint(1, config.ROLL)
-    Dice(move)
+    dice(move)
     pos = move + pos
     #Roll player back if rollback is enabled and they don't get the exact number
     if pos > limit and config.ROLLBACK:
@@ -154,35 +154,35 @@ def Turn(player, title, pos, offset, limit):
         if pos < 0:
             pos = 0
     #Move Player to new position        
-    (x, y) = FindPos(pos)
+    (x, y) = find_pos(pos)
     x = x + offset
     player.setpos(x, y)
             
     #Moves to new ladder/snake position if ladder/snake is taken        
-    newpos = SnakeLadder(pos, title)
+    newpos = snake_ladder(pos, title)
     if newpos != pos:
         pos = newpos
         #Delay so that taking of the snake and ladder is clear
-        AniDelay()
+        ani_delay()
         #Move to new position
-        (x, y) = FindPos(pos)
+        (x, y) = find_pos(pos)
         x = x + offset
         player.setpos(x, y)
     print("Player " + title +  " is on " + str(pos))
     return(pos)
 
-def GameStart(aPlayerTitle, bPlayerTitle):
+def game_start(aPlayerTitle, bPlayerTitle):
     """Starts one game, returns True if aPlayer has won"""
     offset = config.SIZE//(config.GRID*5)
     limit = config.GRID ** 2 - 1
 
     #aPlayer setup
     aPlayer = turtle.Turtle()
-    aPlayerpos = PlayerSetup(aPlayer, offset, config.A_PLAYER_SHAPE, aPlayerTitle)
+    aPlayerpos = player_setup(aPlayer, offset, config.A_PLAYER_SHAPE, aPlayerTitle)
 
     #bPlayer setup
     bPlayer = turtle.Turtle()
-    bPlayerpos = PlayerSetup(bPlayer, -offset, config.B_PLAYER_SHAPE, bPlayerTitle)
+    bPlayerpos = player_setup(bPlayer, -offset, config.B_PLAYER_SHAPE, bPlayerTitle)
 
     #diceTurtle setup
     turtle.penup()
@@ -190,13 +190,13 @@ def GameStart(aPlayerTitle, bPlayerTitle):
     turtle.setpos(config.DICEPOS)
 
     while True:
-        aPlayerpos = Turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
+        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
         if aPlayerpos >= limit:
             print("Player " + aPlayerTitle +  " wins")
             return(True)
             break
 
-        bPlayerpos = Turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, limit)
+        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, limit)
         if bPlayerpos >= limit:
             print("Player " + bPlayerTitle +  " wins")
             return(False)
@@ -207,7 +207,7 @@ def main():
     turtle.screensize(config.SCREEN_SIZE[0], config.SCREEN_SIZE[1])
     turtle.bgcolor(config.BG_COLOR)
     #Draw Board
-    DrawMap()
+    draw_map()
     #Take player names
     aPlayerTitle = input("Enter player A's name: \n")
     bPlayerTitle = input("Enter player B's name: \n")
@@ -217,7 +217,7 @@ def main():
     while esc != "exit":
         #Start game
         print("NEW GAME")
-        win = GameStart(aPlayerTitle, bPlayerTitle)
+        win = game_start(aPlayerTitle, bPlayerTitle)
         if win:
             aPlayerWins = aPlayerWins + 1
         else:
@@ -239,7 +239,7 @@ def main():
             print("WARNING: config.Win_SHAPE not set")
             turtle.hideturtle()
 
-        AniDelay()
+        ani_delay()
         print(aPlayerTitle + " has won: " + str(aPlayerWins))
         print(bPlayerTitle + " has won: " + str(bPlayerWins))
 

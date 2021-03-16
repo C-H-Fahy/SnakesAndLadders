@@ -2,7 +2,7 @@
 #CREATED: 2021-03-09
 import turtle
     
-def LengthLine(pos, length, angle):
+def length_line(pos, length, angle):
     """Draws a line of SIZE of grid at the position and angle inputed"""
     turtle.penup()
     turtle.setpos(pos[0], pos[1])
@@ -10,13 +10,13 @@ def LengthLine(pos, length, angle):
     turtle.pendown()
     turtle.forward(length)
 
-def WriteNumber(value, pos):
+def write_number(value, pos):
         turtle.penup()
         turtle.setpos(pos[0], pos[1])
         turtle.pendown()
         turtle.write(value)
 
-def Ladder(comingFrom, to, width):
+def ladder(comingFrom, to, width):
     """draws a ladder between the two positions"""
     turtle.pensize(2)
     turtle.color("red")
@@ -53,7 +53,7 @@ def Ladder(comingFrom, to, width):
     turtle.pensize(1)
     turtle.color("black")
 
-def Snake(comingFrom, to, width):
+def snake(comingFrom, to, width):
     """draws a snake between the two positions"""
     turtle.penup()
     turtle.setpos(comingFrom)
