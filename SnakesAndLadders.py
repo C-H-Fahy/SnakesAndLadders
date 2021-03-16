@@ -25,10 +25,10 @@ if mode == "2":
     except ModuleNotFoundError:
         print("WARNING: config2.py not found, using config1.py")
 
+
 def find_pos(n):
     """Finds centre of square"""
     #This should be more efficent than for loop(at the cost of some readability)
-    
     #Calculates row using floor division
     y = (n // config.GRID)
     #Calculates column(as x) using modulus
@@ -74,8 +74,9 @@ def draw_map():
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
         shapes.write_number(i, find_pos(i))
-
+    #Reset tracer
     turtle.tracer(True)
+
 
 def player_setup(player, offset, shape, title):
     """Sets up player, returns players position"""
@@ -86,6 +87,7 @@ def player_setup(player, offset, shape, title):
     except turtle.TurtleGraphicsError:
         #If Turtle can't set the players shape
         print("WARNING: " + shape + " is probably missing or invalid")
+
     print("Player " + title + " is " + shape) 
     player.penup()
     player.speed(config.MOVE_SPEED)
@@ -94,6 +96,7 @@ def player_setup(player, offset, shape, title):
     x = x + offset
     player.setpos(x, y)
     return playerpos
+
 
 def dice(move):
     try:
@@ -110,13 +113,14 @@ def dice(move):
         turtle.hideturtle()
     finally:
         print("Roll is: " + str(move))
+
         
 def ani_delay():
     try:
         time.sleep(config.DELAY)
     except NameError:
         print("WARNING: Delay Failed, likely due to time import or borked config")
-        
+
         
 def snake_ladder(pos, title):
     """Finds Position after snake or ladder, returns old position if on same pos"""
@@ -138,6 +142,7 @@ def snake_ladder(pos, title):
             #Stops more moves
     #Returns 
     return(pos)
+
     
 def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
@@ -151,7 +156,6 @@ def turn(player, title, pos, offset, limit):
     dice(move)
     #Finds current position
     pos = move + pos
-    
     #Roll player back if rollback is enabled and they don't get the exact number
     if pos > limit and config.ROLLBACK:
         #Finds amount over
@@ -178,6 +182,7 @@ def turn(player, title, pos, offset, limit):
         player.setpos(x, y)
     print("Player " + title +  " is on " + str(pos))
     return(pos)
+
 
 def game_start(aPlayerTitle, bPlayerTitle):
     """Starts one game, returns True if aPlayer has won"""
@@ -213,6 +218,7 @@ def game_start(aPlayerTitle, bPlayerTitle):
             return(False)
             break
 
+
 def main():
     #Setup screen and background
     turtle.screensize(config.SCREEN_SIZE[0], config.SCREEN_SIZE[1])
@@ -227,7 +233,7 @@ def main():
     esc = ""
     while esc != "exit":
         #Start game
-        print("NEW GAME")
+        print("\nNEW GAME")
         win = game_start(aPlayerTitle, bPlayerTitle)
         if win:
             aPlayerWins = aPlayerWins + 1
@@ -253,6 +259,5 @@ def main():
         ani_delay()
         print(aPlayerTitle + " has won: " + str(aPlayerWins))
         print(bPlayerTitle + " has won: " + str(bPlayerWins))
-
         esc = input("Type 'exit' to exit: \n")
 main()

@@ -10,11 +10,13 @@ def length_line(pos, length, angle):
     turtle.pendown()
     turtle.forward(length)
 
+
 def write_number(value, pos):
-        turtle.penup()
-        turtle.setpos(pos[0], pos[1])
-        turtle.pendown()
-        turtle.write(value)
+    turtle.penup()
+    turtle.setpos(pos[0], pos[1])
+    turtle.pendown()
+    turtle.write(value)
+
 
 def ladder(comingFrom, to, width):
     """draws a ladder between the two positions"""
@@ -53,6 +55,7 @@ def ladder(comingFrom, to, width):
     turtle.pensize(1)
     turtle.color("black")
 
+
 def snake(comingFrom, to, width):
     """draws a snake between the two positions"""
     turtle.penup()
@@ -76,3 +79,5 @@ def snake(comingFrom, to, width):
     #Reset Turtle
     turtle.pensize(1)
     turtle.color("black")
+
+
