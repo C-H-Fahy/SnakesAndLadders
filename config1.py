@@ -1,6 +1,4 @@
-#NOTE: Snakes and Ladders position will be offset by one verses the Coursework brief, 
-#as the example(but not the spec) in the brief starts numbering from 1 instead of 0, 
-#the positions of the snakes and ladders be changed in this config file
+#Squares start from 0 
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares

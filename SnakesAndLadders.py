@@ -1,6 +1,8 @@
 #AUTHOR: CHFahy
 #CREATED: 2021-03-08
 
+#Please read README.txt
+
 #External modules
 import turtle
 import random
@@ -139,11 +141,17 @@ def snake_ladder(pos, title):
     
 def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position"""
+    
+    #Takes input
     print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
+    #Generates random number
     move = random.randint(1, config.ROLL)
+    #Sets dice shape
     dice(move)
+    #Finds current position
     pos = move + pos
+    
     #Roll player back if rollback is enabled and they don't get the exact number
     if pos > limit and config.ROLLBACK:
         #Finds amount over
@@ -173,6 +181,9 @@ def turn(player, title, pos, offset, limit):
 
 def game_start(aPlayerTitle, bPlayerTitle):
     """Starts one game, returns True if aPlayer has won"""
+    
+    print("Rollback is: " + str(config.ROLLBACK))
+
     offset = config.SIZE//(config.GRID*5)
     limit = config.GRID ** 2 - 1
 
