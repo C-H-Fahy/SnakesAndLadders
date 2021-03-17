@@ -3,7 +3,12 @@
 import turtle
     
 def length_line(pos, length, angle):
-    """Draws a line of SIZE of grid at the position and angle inputed"""
+    """Draws a line of SIZE of grid at the position and angle inputed
+    
+    pos: tuple(int, int)
+    length: int
+    angle: int
+    """
     turtle.penup()
     turtle.setpos(pos[0], pos[1])
     turtle.setheading(angle)
@@ -11,7 +16,12 @@ def length_line(pos, length, angle):
     turtle.forward(length)
 
 
-def write_number(value, pos):
+def write_number(pos, value):
+    """writes value to pos
+    
+    pos:    tuple(int, int)
+    value:  int
+    """
     turtle.penup()
     turtle.setpos(pos[0], pos[1])
     turtle.pendown()
@@ -19,7 +29,12 @@ def write_number(value, pos):
 
 
 def ladder(comingFrom, to, width):
-    """draws a ladder between the two positions"""
+    """draws a ladder between the two positions 
+    
+    comingFrom: tuple(int, int)
+    to:         tuple(int, int)
+    width:      float
+    """
     turtle.pensize(2)
     turtle.color("red")
     turtle.penup()
@@ -57,7 +72,12 @@ def ladder(comingFrom, to, width):
 
 
 def snake(comingFrom, to, width):
-    """draws a snake between the two positions"""
+    """draws a snake between the two positions
+    
+    comingFrom: tuple(int, int)
+    to:         tuple(int, int)
+    width:      float
+    """
     turtle.penup()
     turtle.setpos(comingFrom)
     direction = turtle.towards(to)
