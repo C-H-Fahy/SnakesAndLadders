@@ -150,6 +150,8 @@ def snake_ladder(pos, title):
     
     pos:    int
     title:  string
+    
+    returns: int
     """
     #Check to see if player is on a Ladder
     for i in range (0, len(config.LADDERS)):
