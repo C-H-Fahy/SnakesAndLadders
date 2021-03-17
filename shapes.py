@@ -2,10 +2,12 @@
 #CREATED: 2021-03-09
 import turtle
     
-def length_line(pos: tuple(int, int), length: int, angle: int):
+def length_line(pos, length, angle):
     """Draws a line of SIZE of grid at the position and angle inputed
     
-    returns: none
+    pos: tuple(int, int)
+    length: int
+    angle: int
     """
     turtle.penup()
     turtle.setpos(pos[0], pos[1])
@@ -14,10 +16,11 @@ def length_line(pos: tuple(int, int), length: int, angle: int):
     turtle.forward(length)
 
 
-def write_number(pos: tuple(int, int), value: int):
-    """Writes value to pos
+def write_number(pos, value):
+    """writes value to pos
     
-    returns: none
+    pos:    tuple(int, int)
+    value:  int
     """
     turtle.penup()
     turtle.setpos(pos[0], pos[1])
@@ -25,10 +28,12 @@ def write_number(pos: tuple(int, int), value: int):
     turtle.write(value)
 
 
-def ladder(comingFrom: tuple(int, int), to: tuple(int, int), width: float):
-    """Draws a ladder between the two positions 
+def ladder(comingFrom, to, width):
+    """draws a ladder between the two positions 
     
-    returns: none
+    comingFrom: tuple(int, int)
+    to:         tuple(int, int)
+    width:      float
     """
     turtle.pensize(2)
     turtle.color("red")
@@ -66,10 +71,12 @@ def ladder(comingFrom: tuple(int, int), to: tuple(int, int), width: float):
     turtle.color("black")
 
 
-def snake(comingFrom: tuple(int, int), to: tuple(int, int), width: float):
+def snake(comingFrom, to, width):
     """draws a snake between the two positions
     
-    returns: none
+    comingFrom: tuple(int, int)
+    to:         tuple(int, int)
+    width:      float
     """
     turtle.penup()
     turtle.setpos(comingFrom)

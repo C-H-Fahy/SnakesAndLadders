@@ -24,23 +24,13 @@ if mode == "2":
         print("using config2.py")
     except ModuleNotFoundError:
         print("WARNING: config2.py not found, using config1.py")
-        
-        
-
-def ani_delay(s: float):
-    """Delays for s seconds
-
-    returns: none
-    """
-    try:
-        time.sleep(s)
-    except NameError:
-        print("WARNING: Delay Failed, likely due to time import or borked config")
 
 
-def find_pos(n: int):
+def find_pos(n):
     """returns centre of square n
-
+    
+    n:  int
+    
     returns: tuple(int, int)
     """
     #This should be more efficent than for loop(at the cost of some readability)
@@ -64,9 +54,8 @@ def find_pos(n: int):
 
 
 def draw_map():
-    """Draws out the grid, all the snakes, ladders and numbers
-
-    returns: none
+    """Draws out the map
+    the grid and all the snakes and ladders and numbers
     """
     #turns tracer on or off and sets drawspeed
     turtle.tracer(config.DRAW_TRACER)
@@ -96,9 +85,14 @@ def draw_map():
     turtle.tracer(True)
 
 
-def player_setup(player: str, offset: int, shape: str, title: str):
+def player_setup(player, offset, shape, title):
     """Sets up player, returns players position
-
+    
+    player: string
+    offset: int
+    shape:  string
+    title:  string
+    
     returns: int
     """
     try:
@@ -119,10 +113,10 @@ def player_setup(player: str, offset: int, shape: str, title: str):
     return playerpos
 
 
-def dice(move: int):
+def dice(move):
     """Sets dice shape to shape in config
-
-    returns: none
+    
+    move: int
     """
     try:
         #Sets dice shape
@@ -140,9 +134,23 @@ def dice(move: int):
         print("Roll is: " + str(move))
 
         
-def snake_ladder(pos: int, title: str):
-    """Finds Position after snake or ladder, returns old position if on same pos
+def ani_delay(s):
+    """Delays for s seconds
+    
+    s:  float
+    """
+    try:
+        time.sleep(s)
+    except NameError:
+        print("WARNING: Delay Failed, likely due to time import or borked config")
 
+        
+def snake_ladder(pos, title):
+    """Finds Position after snake or ladder, returns old position if on same pos
+    
+    pos:    int
+    title:  string
+    
     returns: int
     """
     #Check to see if player is on a Ladder
@@ -164,13 +172,19 @@ def snake_ladder(pos: int, title: str):
     #Returns 
     return(pos)
 
-
-def turn(player: str, title: str, pos: int, offset: int, limit: int):
+    
+def turn(player, title, pos, offset, limit):
     """Runs players turn, returns players new position
-
+    
+    player: string
+    title:  string
+    pos:    int
+    offset: int
+    limit:  int
+    
     returns: int
     """
-
+    
     #Takes input
     print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
@@ -208,12 +222,15 @@ def turn(player: str, title: str, pos: int, offset: int, limit: int):
     return(pos)
 
 
-def game_start(aPlayerTitle: str, bPlayerTitle: str):
+def game_start(aPlayerTitle, bPlayerTitle):
     """Starts one game, returns True if aPlayer has won
 
-    returns: bool
+    aPlayerTitle: string
+    bPlayerTitle: string
+    
+    returns: boolean
     """
-
+    
     print("Rollback is: " + str(config.ROLLBACK))
 
     offset = config.SIZE//(config.GRID*5)
@@ -247,10 +264,7 @@ def game_start(aPlayerTitle: str, bPlayerTitle: str):
 
 
 def main():
-    """SnakesAndLadders game loop
-
-    returns: none
-    """
+    """SnakesAndLadders game loop"""
     #Setup screen and background
     turtle.screensize(config.SCREEN_SIZE[0], config.SCREEN_SIZE[1])
     turtle.bgcolor(config.BG_COLOR)
