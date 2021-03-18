@@ -20,7 +20,7 @@ def write_number(pos: int, value: int):
     turtle.write(value)
 
 
-def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
+def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: int):
     """draws a ladder between the two positions
     """
     turtle.pensize(2)
@@ -60,7 +60,7 @@ def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
     turtle.color("black")
 
 
-def snake(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
+def snake(comingFrom: tuple[int, int], to: tuple[int, int], width: int):
     """draws a snake between the two positions
     """
     turtle.penup()

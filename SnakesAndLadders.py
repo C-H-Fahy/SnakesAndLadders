@@ -68,11 +68,11 @@ def draw_map():
 
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.snake(find_pos(config.SNAKES[i][0]), find_pos(config.SNAKES[i][1]), gap/10)
+        shapes.snake(find_pos(config.SNAKES[i][0]), find_pos(config.SNAKES[i][1]), gap//10)
 
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.ladder(find_pos(config.LADDERS[i][0]), find_pos(config.LADDERS[i][1]), gap/5)
+        shapes.ladder(find_pos(config.LADDERS[i][0]), find_pos(config.LADDERS[i][1]), gap//5)
 
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
