@@ -203,11 +203,11 @@ def game_start(a_player_title: str, b_player_title: str) -> bool:
 
     #a_player setup
     a_player = turtle.Turtle()
-    a_playerpos = player_setup(a_player, offset, config.A_PLAYER_SHAPE, a_player_title)
+    a_player_pos = player_setup(a_player, offset, config.A_PLAYER_SHAPE, a_player_title)
 
     #b_player setup
     b_player = turtle.Turtle()
-    b_playerpos = player_setup(b_player, -offset, config.B_PLAYER_SHAPE, b_player_title)
+    b_player_pos = player_setup(b_player, -offset, config.B_PLAYER_SHAPE, b_player_title)
 
     #diceTurtle setup
     turtle.penup()
@@ -215,13 +215,13 @@ def game_start(a_player_title: str, b_player_title: str) -> bool:
     turtle.setpos(config.DICEPOS)
 
     while True:
-        a_playerpos = turn(a_player, a_player_title, a_playerpos, offset, limit)
-        if a_playerpos >= limit:
+        a_player_pos = turn(a_player, a_player_title, a_player_pos, offset, limit)
+        if a_player_pos >= limit:
             print("Player " + a_player_title +  " wins")
             return(True)
 
-        b_playerpos = turn(b_player, b_player_title, b_playerpos, -offset, limit)
-        if b_playerpos >= limit:
+        b_player_pos = turn(b_player, b_player_title, b_player_pos, -offset, limit)
+        if b_player_pos >= limit:
             print("Player " + b_player_title +  " wins")
             return(False)
 
