@@ -37,7 +37,9 @@ def ani_delay(s: float):
 def find_cord(n: int) -> tuple[int,int]:
     """returns centre of square n
     """
-    #This should be more efficent than for loop(at the cost of some readability)
+    #This should be more efficent than for loop
+    #(at the cost of some readability)
+
     #Calculates row using floor division
     y = (n // config.GRID)
     #Calculates column(as x) using modulus
@@ -154,7 +156,8 @@ def snake_ladder(pos: int, title: str) -> int:
 
     
 def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
-    """Runs players turn, returns players new position
+    """Runs players turn, 
+    returns players new position
     """
     #Takes input
     print("\nPlayer " + title + " is starting on " + str(pos))
@@ -165,7 +168,8 @@ def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
     dice(move)
     #Finds current position
     pos = move + pos
-    #Roll player back if rollback is enabled and they don't get the exact number
+    #Roll player back if rollback is enabled 
+    #and they don't get the exact number
     if pos > limit and config.ROLLBACK:
         #Finds amount over
         over = pos - limit
