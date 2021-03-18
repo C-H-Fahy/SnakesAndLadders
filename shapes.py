@@ -58,12 +58,7 @@ def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
 
 
 def snake(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
-    """draws a snake between the two positions
-    
-    comingFrom: tuple(int, int)
-    to:         tuple(int, int)
-    width:      float
-    """
+    """draws a snake between the two positions"""
     turtle.penup()
     turtle.setpos(comingFrom)
     direction = turtle.towards(to)
