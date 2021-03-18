@@ -207,7 +207,7 @@ def game_start(a_player_title: str, b_player_title: str) -> bool:
 
     #b_player setup
     b_player = turtle.Turtle()
-    b_playerpos = player_setup(b_player, -offset, config.B_PLAYER_SHAPE, a_player_title)
+    b_playerpos = player_setup(b_player, -offset, config.B_PLAYER_SHAPE, b_player_title)
 
     #diceTurtle setup
     turtle.penup()
