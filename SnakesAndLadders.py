@@ -219,13 +219,11 @@ def game_start(a_player_title: str, b_player_title: str) -> bool:
         if a_playerpos >= limit:
             print("Player " + a_player_title +  " wins")
             return(True)
-            break
 
         b_playerpos = turn(b_player, b_player_title, b_playerpos, -offset, limit)
         if b_playerpos >= limit:
             print("Player " + a_player_title +  " wins")
             return(False)
-            break
 
 
 def main():
