@@ -24,6 +24,14 @@ if mode == "2":
         print("using config2.py")
     except ModuleNotFoundError:
         print("WARNING: config2.py not found, using config1.py")
+        
+def ani_delay(s: float):
+    """Delays for s seconds
+    """
+    try:
+        time.sleep(s)
+    except NameError:
+        print("WARNING: Delay Failed, likely due to failed time import")
 
 
 def find_pos(n: int) -> tuple[int,int]:
@@ -120,15 +128,7 @@ def dice(move: int):
     finally:
         print("Roll is: " + str(move))
 
-        
-def ani_delay(s: float):
-    """Delays for s seconds"""
-    try:
-        time.sleep(s)
-    except NameError:
-        print("WARNING: Delay Failed, likely due to failed time import")
 
-        
 def snake_ladder(pos: int, title: str) -> int:
     """Finds Position after snake or ladder, 
     returns old position if on same pos
