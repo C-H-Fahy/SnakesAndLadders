@@ -12,7 +12,8 @@ def length_line(pos: tuple[int, int], length: int, angle: int):
 
 
 def write_number(pos: int, value: int):
-    """writes value to pos"""
+    """writes value to pos
+    """
     turtle.penup()
     turtle.setpos(pos[0], pos[1])
     turtle.pendown()
@@ -20,7 +21,8 @@ def write_number(pos: int, value: int):
 
 
 def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
-    """draws a ladder between the two positions"""
+    """draws a ladder between the two positions
+    """
     turtle.pensize(2)
     turtle.color("red")
     turtle.penup()
@@ -51,6 +53,7 @@ def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
         turtle.forward(width)
         turtle.backward(width)
         turtle.setheading(direction)
+
     turtle.forward(length/5)
     #Reset Turtle
     turtle.pensize(1)
@@ -58,7 +61,8 @@ def ladder(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
 
 
 def snake(comingFrom: tuple[int, int], to: tuple[int, int], width: float):
-    """draws a snake between the two positions"""
+    """draws a snake between the two positions
+    """
     turtle.penup()
     turtle.setpos(comingFrom)
     direction = turtle.towards(to)

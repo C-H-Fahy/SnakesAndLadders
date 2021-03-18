@@ -27,8 +27,8 @@ if mode == "2":
 
 
 def find_pos(n: int) -> tuple[int,int]:
-    """returns centre of square n"""
-
+    """returns centre of square n
+    """
     #This should be more efficent than for loop(at the cost of some readability)
     #Calculates row using floor division
     y = (n // config.GRID)
@@ -51,7 +51,8 @@ def find_pos(n: int) -> tuple[int,int]:
 
 def draw_map():
     """Draws out everything
-    including the grid and all the snakes and ladders and numbers"""
+    including the grid and all the snakes and ladders and numbers
+    """
     #turns tracer on or off and sets drawspeed
     turtle.tracer(config.DRAW_TRACER)
     turtle.speed(config.DRAW_SPEED)
@@ -81,7 +82,8 @@ def draw_map():
 
 
 def player_setup(player: str, offset: int, shape: str, title: str) -> int:
-    """Sets up player, returns players position"""
+    """Sets up player, returns players position
+    """
     try:
         #Sets players shape
         turtle.register_shape(shape)
@@ -101,7 +103,8 @@ def player_setup(player: str, offset: int, shape: str, title: str) -> int:
 
 
 def dice(move: int):
-    """Sets dice shape to shape in config"""
+    """Sets dice shape to shape in config
+    """
     try:
         #Sets dice shape
         turtle.register_shape(config.DICE[move - 1])
@@ -130,7 +133,6 @@ def snake_ladder(pos: int, title: str) -> int:
     """Finds Position after snake or ladder, 
     returns old position if on same pos
     """
-    
     #Check to see if player is on a Ladder
     for i in range (0, len(config.LADDERS)):
         if pos == config.LADDERS[i][0]:
@@ -152,8 +154,8 @@ def snake_ladder(pos: int, title: str) -> int:
 
     
 def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
-    """Runs players turn, returns players new position"""
-    
+    """Runs players turn, returns players new position
+    """
     #Takes input
     print("\nPlayer " + title + " is starting on " + str(pos))
     esc = input("Player "+ title + " turn(press enter): ")
@@ -191,21 +193,21 @@ def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
     return(pos)
 
 
-def game_start(aPlayerTitle: str, bPlayerTitle: str) -> bool:
-    """Starts one game, returns True if aPlayer has won"""
-    
+def game_start(a_player_title: str, b_player_title: str) -> bool:
+    """Starts one game, returns True if a_player has won
+    """
     print("Rollback is: " + str(config.ROLLBACK))
 
     offset = config.SIZE//(config.GRID*5)
     limit = config.GRID ** 2 - 1
 
-    #aPlayer setup
-    aPlayer = turtle.Turtle()
-    aPlayerpos = player_setup(aPlayer, offset, config.A_PLAYER_SHAPE, aPlayerTitle)
+    #a_player setup
+    a_player = turtle.Turtle()
+    a_playerpos = player_setup(a_player, offset, config.A_PLAYER_SHAPE, a_player_title)
 
-    #bPlayer setup
-    bPlayer = turtle.Turtle()
-    bPlayerpos = player_setup(bPlayer, -offset, config.B_PLAYER_SHAPE, bPlayerTitle)
+    #b_player setup
+    b_player = turtle.Turtle()
+    b_playerpos = player_setup(b_player, -offset, config.B_PLAYER_SHAPE, a_player_title)
 
     #diceTurtle setup
     turtle.penup()
@@ -213,41 +215,41 @@ def game_start(aPlayerTitle: str, bPlayerTitle: str) -> bool:
     turtle.setpos(config.DICEPOS)
 
     while True:
-        aPlayerpos = turn(aPlayer, aPlayerTitle, aPlayerpos, offset, limit)
-        if aPlayerpos >= limit:
-            print("Player " + aPlayerTitle +  " wins")
+        a_playerpos = turn(a_player, a_player_title, a_playerpos, offset, limit)
+        if a_playerpos >= limit:
+            print("Player " + a_player_title +  " wins")
             return(True)
             break
 
-        bPlayerpos = turn(bPlayer, bPlayerTitle, bPlayerpos, -offset, limit)
-        if bPlayerpos >= limit:
-            print("Player " + bPlayerTitle +  " wins")
+        b_playerpos = turn(b_player, b_player_title, b_playerpos, -offset, limit)
+        if b_playerpos >= limit:
+            print("Player " + a_player_title +  " wins")
             return(False)
             break
 
 
 def main():
-    """SnakesAndLadders game loop"""
-
+    """SnakesAndLadders game loop
+    """
     #Setup screen and background
     turtle.screensize(config.SCREEN_SIZE[0], config.SCREEN_SIZE[1])
     turtle.bgcolor(config.BG_COLOR)
     #Draw Board
     draw_map()
     #Take player names
-    aPlayerTitle = input("Enter player A's name: \n")
-    bPlayerTitle = input("Enter player B's name: \n")
-    aPlayerWins = 0
-    bPlayerWins = 0
+    a_player_title = input("Enter player A's name: \n")
+    b_player_title = input("Enter player B's name: \n")
+    a_player_wins = 0
+    b_player_wins = 0
     esc = ""
     while esc != "exit":
         #Start game
         print("\nNEW GAME")
-        win = game_start(aPlayerTitle, bPlayerTitle)
+        win = game_start(a_player_title, b_player_title)
         if win:
-            aPlayerWins = aPlayerWins + 1
+            a_player_wins = a_player_wins + 1
         else:
-            bPlayerWins = bPlayerWins + 1
+            b_player_wins = b_player_wins + 1
 
         try:
             #Sets turtle/dice to WIN_SHAPE
@@ -266,7 +268,7 @@ def main():
             turtle.hideturtle()
 
         ani_delay(config.DELAY)
-        print(aPlayerTitle + " has won: " + str(aPlayerWins))
-        print(bPlayerTitle + " has won: " + str(bPlayerWins))
+        print(a_player_title + " has won: " + str(a_player_title))
+        print(a_player_title + " has won: " + str(b_player_wins))
         esc = input("Type 'exit' to exit: \n")
 main()
