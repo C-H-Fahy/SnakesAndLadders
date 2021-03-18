@@ -268,7 +268,7 @@ def main():
             turtle.hideturtle()
 
         ani_delay(config.DELAY)
-        print(a_player_title + " has won: " + str(a_player_title))
+        print(a_player_title + " has won: " + str(a_player_wins))
         print(a_player_title + " has won: " + str(b_player_wins))
         esc = input("Type 'exit' to exit: \n")
 main()
