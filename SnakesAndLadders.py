@@ -34,7 +34,7 @@ def ani_delay(s: float):
         print("WARNING: Delay Failed, likely due to failed time import")
 
 
-def find_pos(n: int) -> tuple[int,int]:
+def find_cord(n: int) -> tuple[int,int]:
     """returns centre of square n
     """
     #This should be more efficent than for loop(at the cost of some readability)
@@ -76,15 +76,15 @@ def draw_map():
 
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
-        shapes.snake(find_pos(config.SNAKES[i][0]), find_pos(config.SNAKES[i][1]), gap//10)
+        shapes.snake(find_cord(config.SNAKES[i][0]), find_cord(config.SNAKES[i][1]), gap//10)
 
     #Draws Ladders
     for i in range(0, len(config.LADDERS)):
-        shapes.ladder(find_pos(config.LADDERS[i][0]), find_pos(config.LADDERS[i][1]), gap//5)
+        shapes.ladder(find_cord(config.LADDERS[i][0]), find_cord(config.LADDERS[i][1]), gap//5)
 
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
-        shapes.write_number(find_pos(i), i)
+        shapes.write_number(find_cord(i), i)
     #Reset tracer
     turtle.tracer(True)
 
@@ -104,7 +104,7 @@ def player_setup(player: str, offset: int, shape: str, title: str) -> int:
     player.penup()
     player.speed(config.MOVE_SPEED)
     playerpos = config.STARTPOS
-    (x, y) = find_pos(playerpos)
+    (x, y) = find_cord(playerpos)
     x = x + offset
     player.setpos(x, y)
     return playerpos
@@ -175,7 +175,7 @@ def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
         if pos < 0:
             pos = 0
     #Move Player to new position        
-    (x, y) = find_pos(pos)
+    (x, y) = find_cord(pos)
     x = x + offset
     player.setpos(x, y)
             
@@ -186,7 +186,7 @@ def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
         #Delay so that taking of the snake and ladder is clear
         ani_delay(config.DELAY)
         #Move to new position
-        (x, y) = find_pos(pos)
+        (x, y) = find_cord(pos)
         x = x + offset
         player.setpos(x, y)
     print("Player " + title +  " is on " + str(pos))
