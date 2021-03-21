@@ -70,11 +70,7 @@ def draw_map():
     #Finds size of one square
     gap = config.SIZE//config.GRID
     #Draw Grid        
-    for i in range(0, config.GRID+1):
-        #Draw Horizontal Line
-        shapes.length_line((config.GRIDPOS[0], i*gap + config.GRIDPOS[1]), config.SIZE, 0)
-        #Draw Verticle Line
-        shapes.length_line((i*gap + config.GRIDPOS[0], config.GRIDPOS[1]), config.SIZE, 90)
+    shapes.grid(config.GRID, gap, config.GRIDPOS)
 
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):

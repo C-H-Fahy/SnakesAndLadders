@@ -6,17 +6,29 @@ def length_line(pos: tuple[int, int], length: int, angle: int):
     """Draws a line of SIZE of grid at the position and angle inputed
     """
     turtle.penup()
-    turtle.setpos(pos[0], pos[1])
+    turtle.setpos(pos)
     turtle.setheading(angle)
     turtle.pendown()
     turtle.forward(length)
-
+    
+def grid(num_across: int, gap: int, left_corner: tuple[int, int]):
+    """draws a grid
+    args: 
+        num_across: number of squares across(eg, 5 for a 5*5)
+        gap: size of one square
+        left_corner: position of grids left corner 
+    """
+    for i in range(0, num_across + 1):
+        #Draw Horizontal Line
+        length_line((left_corner[0], i*gap + left_corner[1]), gap*num_across, 0)
+        #Draw Verticle Line
+        length_line((i*gap + left_corner[0], left_corner[1]), gap*num_across, 90)
 
 def write_number(pos: int, value: int):
     """writes value to pos
     """
     turtle.penup()
-    turtle.setpos(pos[0], pos[1])
+    turtle.setpos(pos)
     turtle.pendown()
     turtle.write(value)
 
