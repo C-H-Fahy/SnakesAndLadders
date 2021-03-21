@@ -14,9 +14,9 @@ def length_line(pos: tuple[int, int], length: int, angle: int):
 def grid(left_corner: tuple[int, int], num_across: int, gap: int):
     """draws a grid
     args: 
+        left_corner: position of grids left corner 
         num_across: number of squares across(eg, 5 for a 5*5)
         gap: size of one square
-        left_corner: position of grids left corner 
     """
     for i in range(0, num_across + 1):
         #Draw Horizontal Line
