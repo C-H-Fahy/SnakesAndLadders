@@ -2,7 +2,7 @@
 #CREATED: 2021-03-09
 import turtle
     
-def length_line(pos: tuple[int, int], length: int, angle: int):
+def length_line(pos: tuple[int, int], length: int, angle: float):
     """Draws a line of SIZE of grid at the position and angle inputed
     """
     turtle.penup()
@@ -21,9 +21,9 @@ def grid(left_corner: tuple[int, int], num_across: int, gap: int):
     """
     for i in range(0, num_across + 1):
         #Draw Horizontal Line
-        length_line((left_corner[0], i*gap + left_corner[1]), gap*num_across, 0)
+        length_line((left_corner[0], i*gap + left_corner[1]), gap*num_across, 0.00)
         #Draw Verticle Line
-        length_line((i*gap + left_corner[0], left_corner[1]), gap*num_across, 90)
+        length_line((i*gap + left_corner[0], left_corner[1]), gap*num_across, 90.00)
 
 
 def write_number(pos: int, value: int):
