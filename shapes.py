@@ -11,7 +11,7 @@ def length_line(pos: tuple[int, int], length: int, angle: int):
     turtle.pendown()
     turtle.forward(length)
     
-def grid(num_across: int, gap: int, left_corner: tuple[int, int]):
+def grid(left_corner: tuple[int, int], num_across: int, gap: int):
     """draws a grid
     args: 
         num_across: number of squares across(eg, 5 for a 5*5)

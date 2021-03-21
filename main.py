@@ -71,7 +71,7 @@ def draw_map():
     gap = config.SIZE//config.GRID
 
     #Draw Grid        
-    shapes.grid(config.GRID, gap, config.GRIDPOS)
+    shapes.grid(config.GRIDPOS, config.GRID, gap)
 
     #Draws Snakes
     for i in range(0, len(config.SNAKES)):
