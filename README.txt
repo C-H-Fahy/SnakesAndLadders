@@ -20,7 +20,7 @@ This may cause Turtle to non-responsive sometimes due to unknown reasons sometim
 this seems to have nothing to do with my code.
 
 Due to this I would recommend running it from the python command line
-(which on windows is done thru just double clicking the SnakesAndLadders.py)
+(which on windows is done thru just double clicking main.py)
 
 Thank you for reading
 
