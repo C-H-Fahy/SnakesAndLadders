@@ -3,7 +3,7 @@
 import turtle
     
 def length_line(pos: tuple[int, int], length: int, angle: float):
-    """Draws a line of SIZE of grid at the position and angle inputed
+    """Draws a line of length at the position and angle inputed
     """
     turtle.penup()
     turtle.setpos(pos)
