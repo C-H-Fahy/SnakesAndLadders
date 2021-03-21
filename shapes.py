@@ -10,7 +10,8 @@ def length_line(pos: tuple[int, int], length: int, angle: int):
     turtle.setheading(angle)
     turtle.pendown()
     turtle.forward(length)
-    
+
+
 def grid(left_corner: tuple[int, int], num_across: int, gap: int):
     """draws a grid
     args: 
@@ -23,6 +24,7 @@ def grid(left_corner: tuple[int, int], num_across: int, gap: int):
         length_line((left_corner[0], i*gap + left_corner[1]), gap*num_across, 0)
         #Draw Verticle Line
         length_line((i*gap + left_corner[0], left_corner[1]), gap*num_across, 90)
+
 
 def write_number(pos: int, value: int):
     """writes value to pos
