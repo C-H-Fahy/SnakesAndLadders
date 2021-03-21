@@ -87,7 +87,7 @@ def draw_map():
     turtle.tracer(True)
 
 
-def player_setup(player: str, offset: int, shape: str, title: str) -> int:
+def player_setup(player: object, offset: int, shape: str, title: str) -> int:
     """Sets up player, returns players position
     """
     try:
