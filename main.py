@@ -84,8 +84,9 @@ def draw_map():
     for i in range(0, config.GRID ** 2):
         shapes.write_number(find_cord(i), i)
 
-    #Reset tracer
+    #Reset tracer and drawspeed
     turtle.tracer(True)
+    turtle.speed(0)
 
 
 def player_setup(player: object, offset: int, shape: str, title: str) -> int:
