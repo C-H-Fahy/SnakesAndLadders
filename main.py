@@ -41,14 +41,14 @@ def find_cord(n: int) -> tuple[int,int]:
     #(at the cost of some readability)
 
     #Calculates row using floor division
-    y = (n // config.GRID)
+    y = n // config.GRID
     #Calculates column(as x) using modulus
     if y & 1:
         #Flips column if odd row using by modulus after Bitwise NOT n
-        x = (~n % config.GRID) 
+        x = ~n % config.GRID
     else:
         #Doesn't flip if not odd row
-        x = (n % config.GRID)
+        x = n % config.GRID
               
     #Finds size of one square
     gap = config.SIZE//config.GRID
