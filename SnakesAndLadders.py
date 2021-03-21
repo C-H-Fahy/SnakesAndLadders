@@ -155,7 +155,7 @@ def snake_ladder(pos: int, title: str) -> int:
     return(pos)
 
     
-def turn(player: str, title: str, pos: int, offset: int, limit:int) -> int:
+def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
     """Runs players turn, 
     returns players new position
     """
