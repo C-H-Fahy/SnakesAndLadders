@@ -69,6 +69,7 @@ def draw_map():
     turtle.hideturtle()
     #Finds size of one square
     gap = config.SIZE//config.GRID
+
     #Draw Grid        
     shapes.grid(config.GRID, gap, config.GRIDPOS)
 
@@ -83,6 +84,7 @@ def draw_map():
     #Draw Numbers
     for i in range(0, config.GRID ** 2):
         shapes.write_number(find_cord(i), i)
+
     #Reset tracer
     turtle.tracer(True)
 
