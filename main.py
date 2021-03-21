@@ -44,8 +44,7 @@ def find_cord(n: int) -> tuple[int,int]:
     y = (n // config.GRID)
     #Calculates column(as x) using modulus
     if y & 1:
-        #Flips column if odd row using using a really efficent trick by 
-        #modulus after Bitwise NOTing n
+        #Flips column if odd row using by modulus after Bitwise NOT n
         x = (~n % config.GRID) 
     else:
         #Doesn't flip if not odd row
