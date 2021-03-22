@@ -26,7 +26,7 @@ def grid(left_corner: tuple[int, int], num_across: int, gap: int):
         length_line((i*gap + left_corner[0], left_corner[1]), gap*num_across, 90.00)
 
 
-def write_number(pos: int, value: int):
+def write_number(pos: tuple[int, int], value: int):
     """writes value to pos
     """
     turtle.penup()
