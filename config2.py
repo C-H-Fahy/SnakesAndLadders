@@ -1,24 +1,24 @@
-#NOTE: Snakes and Ladders position will be offset by one verses the Coursework brief, 
-#as the example(but not the spec) in the brief starts numbering from 1 instead of 0, 
-#the positions of the snakes and ladders be changed in this config file
+#Squares start from 0 
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares
 GRID = 20
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
-#any number of snakes is possible
-#Ladders have priority over snakes, only one Snake/Ladder can be taken per turn
+#any number of snakes is possible, Ladders have priority over snakes, 
+#only one Snake/Ladder can be taken per turn
 SNAKES = ((324, 67), (296, 22), (210, 96), (261, 2))
 
-#Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
+#Each entry is location of Ladder on grid 
+#Format is (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
 LADDERS = ((245, 387), (168, 220), (215, 268), (21, 158), (45, 166))
 
-#Determines if the player needs to get exactly the right number from their position
-#to the endsquare to win 
-#if this is True the player will go back the same number of spaces they rolled
-ROLLBACK = False
+#if this is True the playerthe player needs to get exactly
+#the right number from their position to the endsquare to
+#win and if they don't(and it's True) they
+#will go back the same number of spaces they rolled
+ROLLBACK = True
 
 #Size and positions of grid appears as in turtle
 SIZE = 750
@@ -37,7 +37,8 @@ MOVE_SPEED = 0
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
 
-#Starting Square this is the square that the game starts on(counting starts from 0)
+#Starting Square this is the square that the game starts on
+#(counting starts from 0)
 STARTPOS = 0 
 
 #Max roll

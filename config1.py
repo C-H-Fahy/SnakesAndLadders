@@ -5,17 +5,19 @@
 GRID = 5
 
 #Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
-#any number of snakes is possible
-#Ladders have priority over snakes, only one Snake/Ladder can be taken per turn
+#any number of snakes is possible, Ladders have priority over snakes, 
+#only one Snake/Ladder can be taken per turn
 SNAKES = ((7, 2), (20, 0), (23, 13))
 
-#Each entry is location of Ladder on grid (Startpoint/TriggerSquare, Endpoint)
+#Each entry is location of Ladder on grid 
+#Format is (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
 LADDERS = ((4, 14), (8, 11), (17,22))
 
-#Determines if the player needs to get exactly the right number from their position
-#to the endsquare to win 
-#if this is True the player will go back the same number of spaces they rolled
+#if this is True the playerthe player needs to get exactly
+#the right number from their position to the endsquare to
+#win and if they don't(and it's True) they
+#will go back the same number of spaces they rolled
 ROLLBACK = True
 
 #Size and positions of grid appears as in turtle
@@ -35,7 +37,8 @@ MOVE_SPEED = 0
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
 
-#Starting Square this is the square that the game starts on(counting starts from 0)
+#Starting Square this is the square that the game starts on(
+#counting starts from 0)
 STARTPOS = 0 
 
 #Max roll
