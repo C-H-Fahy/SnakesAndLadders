@@ -4,7 +4,8 @@
 #so long as the numbers and images can fit in the squares
 GRID = 5
 
-#Each entry is location of Snake on grid (Startpoint/TriggerSquare, Endpoint)
+#Each entry is location of Snake on grid 
+#Format is (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible, Ladders have priority over snakes, 
 #only one Snake/Ladder can be taken per turn
 SNAKES = ((7, 2), (20, 0), (23, 13))
