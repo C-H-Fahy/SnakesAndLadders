@@ -8,7 +8,7 @@ GRID = 5
 #Format is (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible, Ladders have priority over snakes, 
 #only one Snake/Ladder can be taken per turn
-SNAKES = ((7, 2), (20, 0), (23, 13))
+SNAKES = ((7, 2), (19, 0), (23, 13))
 
 #Each entry is location of Ladder on grid 
 #Format is (Startpoint/TriggerSquare, Endpoint)
