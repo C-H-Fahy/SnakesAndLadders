@@ -100,10 +100,14 @@ def player_setup(player: object, offset: int, shape: str, title: str) -> int:
         #If Turtle can't set the players shape
         print("WARNING: " + shape + " is probably missing or invalid")
 
-    print("Player " + title + " is " + shape) 
+    print("Player " + title + " is " + shape)
+    
+    #Setup player turtle
     player.penup()
     player.speed(config.MOVE_SPEED)
     playerpos = config.STARTPOS
+    
+    #Move to starting position
     (x, y) = find_cord(playerpos)
     x = x + offset
     player.setpos(x, y)
@@ -149,7 +153,8 @@ def snake_ladder(pos: int, title: str) -> int:
             #Finds new position
             return(config.SNAKES[i][1])
             #Stops more moves
-    #Returns 
+
+    #If no ladders or snakes taken return old pos
     return(pos)
 
     
@@ -166,6 +171,7 @@ def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
     dice(move)
     #Finds current position
     pos = move + pos
+
     #Roll player back if rollback is enabled 
     #and they don't get the exact number
     if pos > limit and config.ROLLBACK:
@@ -176,7 +182,8 @@ def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
         print("You rolled over by " + str(over) + ", bouncing back to " + str(pos))
         if pos < 0:
             pos = 0
-    #Move Player to new position        
+ 
+    #Move Player to current position        
     (x, y) = find_cord(pos)
     x = x + offset
     player.setpos(x, y)
@@ -217,19 +224,23 @@ def game_start(a_player_title: str, b_player_title: str) -> bool:
     turtle.setpos(config.DICEPOS)
 
     while True:
+        #aPlayer takes turn
         a_player_pos = turn(a_player, a_player_title, a_player_pos, offset, limit)
         if a_player_pos >= limit:
+            #If aPlayer wins
             print("Player " + a_player_title +  " wins")
             return(True)
-
+        #bPlayer takes turn
         b_player_pos = turn(b_player, b_player_title, b_player_pos, -offset, limit)
         if b_player_pos >= limit:
+            #If bPlayer wins
             print("Player " + b_player_title +  " wins")
             return(False)
 
 
 def main():
-    """SnakesAndLadders game loop
+    """main function
+    loops game until interupt or 'exit' is entered at end of game
     """
     #Setup screen and background
     turtle.screensize(config.SCREEN_SIZE[0], config.SCREEN_SIZE[1])
@@ -245,10 +256,13 @@ def main():
     while esc != "exit":
         #Start game
         print("\nNEW GAME")
-        win = game_start(a_player_title, b_player_title)
-        if win:
+        a_win = game_start(a_player_title, b_player_title)
+
+        if a_win:
+            #If aPlayer wins increment a_player_wins
             a_player_wins = a_player_wins + 1
         else:
+            #If bPlayer wins increment b_player_wins
             b_player_wins = b_player_wins + 1
 
         try:
@@ -266,8 +280,10 @@ def main():
         except NameError:
             print("WARNING: config.Win_SHAPE not set")
             turtle.hideturtle()
-
+        #Ensure win screen stays up for short time
         ani_delay(config.DELAY)
+        
+        #number of wins and input for exit
         print(a_player_title + " has won: " + str(a_player_wins))
         print(b_player_title + " has won: " + str(b_player_wins))
         esc = input("Type 'exit' to exit: \n")

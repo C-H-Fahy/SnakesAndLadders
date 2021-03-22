@@ -26,18 +26,23 @@ def grid(left_corner: tuple[int, int], num_across: int, gap: int):
         length_line((i*gap + left_corner[0], left_corner[1]), gap*num_across, 90.00)
 
 
-def write_number(pos: tuple[int, int], value: int):
-    """writes value to pos
+def write_number(cord: tuple[int, int], value: int):
+    """writes value to cordinate
     """
     turtle.penup()
-    turtle.setpos(pos)
+    turtle.setpos(cord)
     turtle.pendown()
     turtle.write(value)
 
 
 def ladder(coming_from: tuple[int, int], to: tuple[int, int], width: int):
-    """draws a ladder between the two positions
+    """draws a ladder between the two cords
+    args:
+        coming_from: cord of base of ladder
+        to: cord of top of ladder
+        width: width of ladder
     """
+    #Setup
     turtle.pensize(2)
     turtle.color("red")
     turtle.penup()
@@ -59,25 +64,33 @@ def ladder(coming_from: tuple[int, int], to: tuple[int, int], width: int):
     turtle.setheading(direction)
     turtle.right(90)
     turtle.forward(width/2)
-    
     turtle.setheading(direction)
     turtle.pendown()
-    for i in range(1, 5):
+    #Run thru 4 times
+    for i in range(0, 4):
+        #Move forward 1/5ths
         turtle.forward(length/5)
         turtle.left(90)
+        #Draw step
         turtle.forward(width)
         turtle.backward(width)
         turtle.setheading(direction)
-
+    #Draw last 1/5th
     turtle.forward(length/5)
+
     #Reset Turtle
     turtle.pensize(1)
     turtle.color("black")
 
 
 def snake(coming_from: tuple[int, int], to: tuple[int, int], width: int):
-    """draws a snake between the two positions
+    """draws a snake between the two cordinates
+    args:
+        coming_from: cordinate of head of snake
+        to: cordinate of tail of snake
+        width: width of snake
     """
+    #Setup
     turtle.penup()
     turtle.setpos(coming_from)
     direction = turtle.towards(to)
