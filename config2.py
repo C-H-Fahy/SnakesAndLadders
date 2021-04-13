@@ -2,18 +2,18 @@
 
 #Number of squares grid is across, any size of grid is possible, 
 #so long as the numbers and images can fit in the squares
-GRID = 20
+GRID = 18
 
 #Each entry is location of Snake on grid 
 #Format is (Startpoint/TriggerSquare, Endpoint)
 #any number of snakes is possible, Ladders have priority over snakes, 
 #only one Snake/Ladder can be taken per turn
-SNAKES = ((324, 67), (296, 22), (210, 96), (261, 2))
+SNAKES = ((322, 67), (296, 22), (210, 96), (261, 2))
 
 #Each entry is location of Ladder on grid 
 #Format is (Startpoint/TriggerSquare, Endpoint)
 #any number of ladders is possible
-LADDERS = ((245, 387), (168, 220), (215, 268), (21, 158), (45, 166))
+LADDERS = ((245, 320), (168, 220), (215, 268), (21, 158), (45, 166))
 
 #if this is True the playerthe player needs to get exactly
 #the right number from their position to the endsquare to
