@@ -169,7 +169,7 @@ def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
     move = random.randint(1, config.ROLL)
     #Sets dice shape
     dice(move)
-    #Finds next position
+    #Finds current position
     pos = move + pos
 
     #Roll player back if rollback is enabled 
@@ -183,12 +183,10 @@ def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
         if pos < 0:
             pos = 0
  
-    #Move Player to current position
-    if config.EVERY_SQUARE:
-        for i in range(pos - move, pos + 1):        
-            (x, y) = find_cord(i)
-            x = x + offset
-            player.setpos(x, y)
+    #Move Player to current position        
+    (x, y) = find_cord(pos)
+    x = x + offset
+    player.setpos(x, y)
             
     #Moves to new ladder/snake position if ladder/snake is taken        
     newpos = snake_ladder(pos, title)
