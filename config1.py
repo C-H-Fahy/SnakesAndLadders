@@ -21,8 +21,10 @@ LADDERS = ((4, 14), (8, 11), (17,22))
 #will go back the same number of spaces they rolled
 ROLLBACK = True
 
-#Size and positions of grid appears as in turtle
+#Size is the amount of space the grid takes up in turtle
+#can be increased to allow for larger board sizes
 SIZE = 750
+#positions of grid appears as in turtle
 GRIDPOS = (-375, -375)
 DICEPOS = (-400, -400)
 SCREEN_SIZE = (850, 850)
@@ -33,7 +35,11 @@ DRAW_SPEED = 0
 #Determine if Turtles animinations are on while drawing
 DRAW_TRACER = False
 #Move speed of characters
-MOVE_SPEED = 0
+MOVE_SPEED = 1
+
+#If True characters will stop on every square, 
+#if False players can skip square(this can be benificial on extremely large board sizes)
+EVERY_SQUARE = True
 
 #Delay when going Up/Down Ladder/Snake
 DELAY = 0.25
