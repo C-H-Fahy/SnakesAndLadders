@@ -18,7 +18,7 @@ LADDERS = ((245, 320), (168, 220), (215, 268), (21, 158), (45, 166))
 #if this is True the playerthe player needs to get exactly
 #the right number from their position to the endsquare to
 #win and if they don't(and it's True) they
-#will go back the same number of spaces they rolled
+#will go back the  number of spaces they rolled over
 ROLLBACK = True
 
 #Size and positions of grid appears as in turtle
