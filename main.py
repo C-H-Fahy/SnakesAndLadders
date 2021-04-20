@@ -34,7 +34,7 @@ def ani_delay(s: float):
         print("WARNING: Delay Failed, likely due to failed time import")
 
 
-def find_cord(n: int) -> tuple[int,int]:
+def find_cord(n: int) -> tuple:
     """returns centre of square n
     """
     #This should be more efficent than for loop
