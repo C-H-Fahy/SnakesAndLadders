@@ -21,6 +21,9 @@ LADDERS = ((4, 14), (8, 11), (17,22))
 #will go back the  number of spaces they rolled over
 ROLLBACK = True
 
+#When True players will stop on every square
+EVERY_SQUARE = True
+
 #Size and positions of grid appears as in turtle
 SIZE = 750
 GRIDPOS = (-375, -375)

@@ -158,19 +158,19 @@ def snake_ladder(pos: int, title: str) -> int:
     return(pos)
 
     
-def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
+def turn(player: object, title: str, oldpos: int, offset: int, limit:int) -> int:
     """Runs players turn, 
     returns players new position
     """
     #Takes input
-    print("\nPlayer " + title + " is starting on " + str(pos))
+    print("\nPlayer " + title + " is starting on " + str(oldpos))
     esc = input("Player "+ title + " turn(press enter): ")
     #Generates random number
     move = random.randint(1, config.ROLL)
     #Sets dice shape
     dice(move)
     #Finds current position
-    pos = move + pos
+    pos = move + oldpos
 
     #Roll player back if rollback is enabled 
     #and they don't get the exact number
@@ -182,12 +182,21 @@ def turn(player: object, title: str, pos: int, offset: int, limit:int) -> int:
         print("You rolled over by " + str(over) + ", bouncing back to " + str(pos))
         if pos < 0:
             pos = 0
- 
-    #Move Player to current position        
+
+    if config.EVERY_SQUARE:
+        #When True players stop on every square
+        for i in range(oldpos, pos): 
+            (x, y) = find_cord(i)
+            x = x + offset
+            player.setpos(x, y)
+
+    #Move Player to current position   
+    #When EVERY_SQUARE False(or ROLLBACK occurs) players 
+    #move directly to square and don't stop on every one
     (x, y) = find_cord(pos)
     x = x + offset
     player.setpos(x, y)
-            
+
     #Moves to new ladder/snake position if ladder/snake is taken        
     newpos = snake_ladder(pos, title)
     if newpos != pos:
