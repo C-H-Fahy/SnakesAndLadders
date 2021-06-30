@@ -6,32 +6,12 @@
 #External modules
 import turtle
 import random
-try: 
-    import time
-    #The code will be able to run without time being imported correctly
-except ModuleNotFoundError:
-    print("WARNING: Failed to import time, Attempting to proceed")
+import time
 
 #Internal modules
 import shapes
 import config1 as config
 
-#Import other configs as config if other configs are picked
-mode = input("Enter 1(or anything else) for config1.py (default) or 2 for config2.py(mode 2): \n")
-if mode == "2":
-    try: 
-        import config2 as config
-        print("using config2.py")
-    except ModuleNotFoundError:
-        print("WARNING: config2.py not found, using config1.py")
-        
-def ani_delay(s: float):
-    """Delays for s seconds
-    """
-    try:
-        time.sleep(s)
-    except NameError:
-        print("WARNING: Delay Failed, likely due to failed time import")
 
 
 def find_cord(n: int) -> tuple:
@@ -202,7 +182,7 @@ def turn(player: object, title: str, oldpos: int, offset: int, limit:int) -> int
     if newpos != pos:
         pos = newpos
         #Delay so that taking of the snake and ladder is clear
-        ani_delay(config.DELAY)
+        time.sleep(config.DELAY)
         #Move to new position
         (x, y) = find_cord(pos)
         x = x + offset
@@ -290,7 +270,7 @@ def main():
             print("WARNING: config.Win_SHAPE not set")
             turtle.hideturtle()
         #Ensure win screen stays up for short time
-        ani_delay(config.DELAY)
+        time.sleep(config.DELAY)
         
         #number of wins and input for exit
         print(a_player_title + " has won: " + str(a_player_wins))
