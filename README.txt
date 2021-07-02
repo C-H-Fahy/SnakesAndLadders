@@ -1,6 +1,6 @@
 # Snakes And Ladders
 
-Hi! This is some school project that I decided to public.
+Hi!
 
 The Config can be modified to allow for different grid sizes, different sized die, 
 and to change the position of the snakes and ladders.
